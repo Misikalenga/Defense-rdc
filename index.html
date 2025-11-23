@@ -388,7 +388,33 @@
   </div>
 </section>
 
+  <!-- BIOGRAPHIE -->
+  <section id="biographie" class="max-w-7xl mx-auto px-4 lg:px-6 py-16 grid lg:grid-cols-2 gap-8 items-center">
+    <div class="aspect-square bg-white border border-black/10 shadow-soft relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,115,207,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(206,17,38,0.12),transparent_45%)]"></div>
+      <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-4 border-t border-black/10">
+        <p class="text-xs uppercase tracking-widest text-black/60 font-bold">Portrait officiel</p>
+        <p class="font-semibold">Éliézer Ntambwe</p>
+        <p class="text-sm text-black/70">Ministre Délégué à la Défense Nationale</p>
+      </div>
+    </div>
 
+    <div>
+      <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">Ministre Délégué à la Défense Nationale</h2>
+      <p class="mt-3 text-black/70 leading-relaxed">
+        Parcours public, engagements nationaux et vision stratégique au service de la sécurité
+        et des anciens combattants.
+      </p>
+      <ul class="mt-4 space-y-2 text-sm text-black/70">
+        <li>• Expérience gouvernementale et réformes sectorielles</li>
+        <li>• Programmes de modernisation et d’éthique militaire</li>
+        <li>• Coopération régionale pour la stabilisation</li>
+      </ul>
+      <a href="#" class="mt-6 inline-flex text-sm font-semibold text-rdcBlue hover:underline uppercase tracking-wide">
+        Lire la biographie complète →
+      </a>
+    </div>
+  </section>
 
   <!-- ACTUALITÉS -->
   <section id="actualites" class="max-w-7xl mx-auto px-4 lg:px-6 py-16">
@@ -507,57 +533,105 @@
     </div>
   </section>
 
-  <!-- AGENDA -->
-  <section id="agenda" class="bg-cream2 border-y border-black/10">
-    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-16">
+<!-- AGENDA  -->
+<section id="agenda" class="bg-cream2 border-y border-black/10">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-16">
+
+    <div class="flex items-center justify-between">
       <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">Agenda</h2>
-      <div class="mt-6 grid md:grid-cols-3 gap-4">
-        <div class="bg-white p-5 border border-black/10 shadow-soft">
-          <p class="text-xs uppercase tracking-widest text-black/60 font-bold">28 Nov 2025</p>
-          <p class="mt-2 font-semibold">Réunion de coordination inter-services</p>
-          <p class="mt-1 text-sm text-black/70">Kinshasa</p>
-        </div>
-        <div class="bg-white p-5 border border-black/10 shadow-soft">
-          <p class="text-xs uppercase tracking-widest text-black/60 font-bold">05 Déc 2025</p>
-          <p class="mt-2 font-semibold">Cérémonie nationale des anciens combattants</p>
-          <p class="mt-1 text-sm text-black/70">Place des Héros</p>
-        </div>
-        <div class="bg-white p-5 border border-black/10 shadow-soft">
-          <p class="text-xs uppercase tracking-widest text-black/60 font-bold">12 Déc 2025</p>
-          <p class="mt-2 font-semibold">Visite technique – logistique</p>
-          <p class="mt-1 text-sm text-black/70">Congo Central</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- BIOGRAPHIE -->
-  <section id="biographie" class="max-w-7xl mx-auto px-4 lg:px-6 py-16 grid lg:grid-cols-2 gap-8 items-center">
-    <div class="aspect-square bg-white border border-black/10 shadow-soft relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,115,207,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(206,17,38,0.12),transparent_45%)]"></div>
-      <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-4 border-t border-black/10">
-        <p class="text-xs uppercase tracking-widest text-black/60 font-bold">Portrait officiel</p>
-        <p class="font-semibold">Nom du Ministre</p>
-        <p class="text-sm text-black/70">Ministre Délégué à la Défense Nationale</p>
+      <!-- Controls -->
+      <div class="flex items-center gap-2">
+        <button id="agendaPrev" class="px-3 py-2 bg-white border border-black/20 text-sm font-semibold hover:bg-black/5">
+          ◀
+        </button>
+        <button id="agendaNext" class="px-3 py-2 bg-white border border-black/20 text-sm font-semibold hover:bg-black/5">
+          ▶
+        </button>
       </div>
     </div>
 
-    <div>
-      <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">Biographie</h2>
-      <p class="mt-3 text-black/70 leading-relaxed">
-        Parcours public, engagements nationaux et vision stratégique au service de la sécurité
-        et des anciens combattants.
-      </p>
-      <ul class="mt-4 space-y-2 text-sm text-black/70">
-        <li>• Expérience gouvernementale et réformes sectorielles</li>
-        <li>• Programmes de modernisation et d’éthique militaire</li>
-        <li>• Coopération régionale pour la stabilisation</li>
-      </ul>
-      <a href="#" class="mt-6 inline-flex text-sm font-semibold text-rdcBlue hover:underline uppercase tracking-wide">
-        Lire la biographie complète →
-      </a>
+    <!-- Carrousel container -->
+    <div class="relative mt-8 overflow-hidden border border-black/10 bg-white">
+
+      <!-- Inner track -->
+      <div id="agendaTrack"
+           class="flex transition-transform duration-500 ease-in-out">
+
+        <!-- ITEM -->
+        <div class="min-w-full p-8 border-r border-black/10">
+          <p class="text-xs uppercase tracking-widest text-black/60 font-bold">
+            28 Nov 2025
+          </p>
+          <h3 class="mt-2 font-bold text-xl">Réunion de coordination inter-services</h3>
+          <p class="mt-2 text-sm text-black/70">Kinshasa</p>
+
+          <p class="mt-4 text-black/80 leading-relaxed">
+            Rencontre des directions centrales concernant la planification opérationnelle,
+            l’analyse des besoins stratégiques et la coordination interservices.
+          </p>
+        </div>
+
+        <!-- ITEM -->
+        <div class="min-w-full p-8 border-r border-black/10">
+          <p class="text-xs uppercase tracking-widest text-black/60 font-bold">
+            05 Déc 2025
+          </p>
+          <h3 class="mt-2 font-bold text-xl">Cérémonie nationale des anciens combattants</h3>
+          <p class="mt-2 text-sm text-black/70">Place des Héros</p>
+
+          <p class="mt-4 text-black/80 leading-relaxed">
+            Cérémonie officielle en hommage aux vétérans de la nation, en présence
+            des autorités civiles et militaires.
+          </p>
+        </div>
+
+        <!-- ITEM -->
+        <div class="min-w-full p-8 border-r border-black/10">
+          <p class="text-xs uppercase tracking-widest text-black/60 font-bold">
+            12 Déc 2025
+          </p>
+          <h3 class="mt-2 font-bold text-xl">Visite technique – Modernisation Logistique</h3>
+          <p class="mt-2 text-sm text-black/70">Congo Central</p>
+
+          <p class="mt-4 text-black/80 leading-relaxed">
+            Inspection des infrastructures logistiques dans le cadre du programme
+            national de modernisation des installations militaires.
+          </p>
+        </div>
+
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- SCRIPT CARROUSEL -->
+<script>
+  const track = document.getElementById("agendaTrack");
+  const next = document.getElementById("agendaNext");
+  const prev = document.getElementById("agendaPrev");
+
+  let index = 0;
+  const total = track.children.length;
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  next.addEventListener("click", () => {
+    index = (index + 1) % total;
+    updateCarousel();
+  });
+
+  prev.addEventListener("click", () => {
+    index = (index - 1 + total) % total;
+    updateCarousel();
+  });
+</script>
+
+
+
+
 
   <!-- CONTACT -->
   <section id="contact" class="max-w-7xl mx-auto px-4 lg:px-6 py-14">
