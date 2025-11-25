@@ -99,13 +99,13 @@
     </div>
 
     <!-- Main nav -->
-    <nav class="max-w-7xl mx-auto px-4 lg:px-6">
+    <nav class="max-w-7xl mx-auto px-4 lg:px-6 ">
       <div class="flex items-center justify-between h-16">
 
         <!-- Logo zone -->
         <a href="#accueil" class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-rdcBlue flex items-center justify-center text-white font-extrabold">
-            MD
+          <div class="w-10 h-10 flex items-center justify-center ">
+            <img src="assets/logof+.png" alt="">
           </div>
           <div class="leading-tight">
             <p class="text-sm font-bold uppercase tracking-wide">Ministre Délégué</p>
@@ -364,34 +364,48 @@
     </nav>
   </header>
 
- <!-- HERO (sobre corrigé) -->
-<section id="accueil" class="relative min-h-[75vh] flex items-center overflow-hidden">
-  <!-- Vidéo background -->
-  <div class="yt-bg absolute inset-0 z-0">
+<!-- HERO (style mil.be avec YouTube background) -->
+<section
+  id="accueil"
+  class="relative h-screen max-h-[19.4375rem] w-full overflow-hidden bg-ink md:max-h-[42rem]"
+>
+  <!-- Vidéo YouTube en arrière-plan (cover) -->
+  <div class="absolute inset-0 h-full w-full">
     <iframe
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      style="width: 120vw; height: 120vh;"
       src="https://www.youtube.com/embed/GWNu3U3HNfc?start=14&autoplay=1&mute=1&controls=0&loop=1&playlist=GWNu3U3HNfc&modestbranding=1&playsinline=1"
       frameborder="0"
       allow="autoplay; encrypted-media"
       allowfullscreen
-      title="Fond vidéo Défense RDC">
-    </iframe>
+      title="Fond vidéo Défense RDC"
+    ></iframe>
   </div>
 
-  <!-- Overlay sombre couvrant tout -->
-  <div class="absolute inset-0 z-10 bg-black/60"></div>
+  <!-- Overlay gradient (équivalent bg-gradient-black-to-b) -->
+  <div class="relative z-10 flex h-full w-full items-center justify-center bg-gradient-to-b from-black/70 via-black/55 to-black/80 p-4">
+    <div class="text-center text-white text-balance">
+      <!-- slogan -->
+      <h2 class=" text-2xl md:text-4xl font-extrabold">
+        Défense Nationale & Anciens Combattants
+      </h2>
+      <!-- petit titre espacé -->
+      <h4 class="mt-6 text-xs md:text-sm uppercase tracking-[0.65em] font-semibold opacity-90">
+        É l i é z e r&nbsp; N t a m b w e
+      </h4>
 
-  <!-- Titre unique -->
-  <div class="relative z-20 max-w-7xl mx-auto px-4 lg:px-6 pb-10 w-full">
-    <h1 class="text-white text-2xl md:text-4xl font-extrabold uppercase tracking-wider">
-      Défense Nationale & Anciens Combattants
-    </h1>
+    </div>
   </div>
 </section>
+
+
 
   <!-- BIOGRAPHIE -->
   <section id="biographie" class="max-w-7xl mx-auto px-4 lg:px-6 py-16 grid lg:grid-cols-2 gap-8 items-center">
     <div class="aspect-square bg-white border border-black/10 shadow-soft relative overflow-hidden">
+      <!-- dégradé sur la photo-->
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,115,207,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(206,17,38,0.12),transparent_45%)]"></div>
+      <img src="assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER.jpg" alt="Éliézer Ntambwe">
       <div class="absolute bottom-0 left-0 right-0 bg-white/90 p-4 border-t border-black/10">
         <p class="text-xs uppercase tracking-widest text-black/60 font-bold">Portrait officiel</p>
         <p class="font-semibold">Éliézer Ntambwe</p>
