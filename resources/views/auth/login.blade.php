@@ -43,7 +43,7 @@
 
         <div class="relative z-10 text-center px-10">
             <div class="w-24 h-24 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border border-white/20 shadow-2xl">
-                <img src="/assets/logof+.png" alt="Logo" class="w-16 h-16 object-contain">
+                <img src="{{ asset('assets/logof2.png') }}" alt="Logo" class="w-16 h-16 object-contain">
             </div>
             <h2 class="text-3xl font-bold text-white mb-2">République Démocratique du Congo</h2>
             <p class="text-rdcGold font-medium uppercase tracking-widest text-sm mb-6">Ministère Délégué à la Défense</p>
@@ -70,7 +70,7 @@
         <div class="w-full max-w-md space-y-8">
 
             <div class="lg:hidden text-center mb-8">
-                <img src="/assets/logof+.png" alt="Logo" class="w-16 h-16 mx-auto mb-4">
+                <img src="{{ asset('assets/logof2.png') }}" alt="Logo" class="w-16 h-16 mx-auto mb-4">
                 <h2 class="text-xl font-bold text-ink">Administration</h2>
                 <p class="text-sm text-black/50">Ministère Délégué Défense</p>
             </div>
