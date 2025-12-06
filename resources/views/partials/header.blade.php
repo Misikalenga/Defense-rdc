@@ -3,14 +3,14 @@
         <div class="bg-ink text-white text-xs">
             <div class="max-w-7xl mx-auto px-4 lg:px-6 h-9 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <a href="#" class="hover:underline">Ministre Délégué</a>
-                    <span class="opacity-50">|</span>
+                    <a href="#" class="hover:underline  hidden lg:block">Ministère Délégué</a>
+                    <span class="opacity-50  hidden lg:block">|</span>
                     <a href="#annonces" class="hover:underline">Annonces Officielles</a>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="https://www.acr-rdc.com/" class="hover:underline">ACR</a>
+                    <a href="https://www.acr-rdc.com/" class="hover:underline hidden lg:block">ACR</a>
                     <a href="https://defense.gouv.cd/" class="hover:underline">Defense-Nationale</a>
-                    <a href="#contact" class="hover:underline">Recrutement</a>
+                    <a href="#contact" class="hover:underline hidden lg:block">Recrutement</a>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                         <img src="{{ asset('assets/logof2.png') }}" alt="">
                     </div>
                     <div class="leading-tight">
-                        <p class="text-sm font-bold uppercase tracking-wide">Ministre Délégué</p>
+                        <p class="text-sm font-bold uppercase tracking-wide">Ministère Délégué</p>
                         <p class="text-xs text-black/70 uppercase">Défense & Anciens Combattants</p>
                     </div>
                 </a>
@@ -136,7 +136,7 @@
 
                     <div class="group h-full flex items-center">
                         <a href="#biographie" class="nav-link uppercase text-sm font-semibold tracking-wider hover:text-rdcBlue transition py-4">
-                            Biographie
+                            Cabinet
                         </a>
                         <div class="absolute left-0 right-0 top-[80px] pt-[24px] opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200 ease-out z-50">
                             <div class="bg-white border-t border-b border-black/10 shadow-soft">

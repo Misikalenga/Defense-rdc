@@ -9,7 +9,7 @@
                 </div>
                 <div class="leading-tight">
                     <p class="text-base font-bold uppercase tracking-wide">
-                        Ministre Délégué
+                        Ministère Délégué
                     </p>
                     <p class="text-xs text-black/70 uppercase tracking-wide">
                         Défense & Anciens Combattants
@@ -23,9 +23,9 @@
             </p>
         </div>
 
-        <div class="lg:col-span-3">
-
-            <div class="grid grid-cols-2 gap-10 lg:hidden">
+        <div class="md:col-span-3">
+            <!-- version mobil-->
+            <div class="grid grid-cols-2 gap-10 md:hidden">
 
                 <div>
                     <p class="text-xl font-bold uppercase tracking-wide mb-4">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="lg:hidden mt-6">
+            <div class="md:hidden mt-6">
                 <p class="text-xl font-bold uppercase tracking-wide mb-4">Légal</p>
                 <div class="flex justify-start gap-8 text-[0.9rem] text-black/70">
                     <a href="#" class="hover:text-rdcBlue">Mentions</a>
@@ -59,8 +59,8 @@
                     <a href="#" class="hover:text-rdcBlue">Cookies</a>
                 </div>
             </div>
-
-            <div class="hidden lg:grid grid-cols-3 gap-16">
+            <!-- version pc -->
+            <div class="hidden md:grid grid-cols-3 gap-16">
 
                 <div>
                     <p class="text-xl font-bold uppercase tracking-wide mb-4">Liens rapides</p>
