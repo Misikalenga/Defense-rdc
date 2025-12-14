@@ -34,8 +34,12 @@
             border-color: #0073CF;
         }
 
-        .bio-box { display: none; }
-        .bio-box.open { display: block; }
+        .bio-box { 
+            display: none; 
+        }
+        .bio-box.open { 
+            display: block; 
+        }
     </style>
 
 </head>
@@ -60,29 +64,7 @@
 </section>
 
 
-<!-- ONGLET BAR -->
-<section class="sticky top-[100px] z-40 bg-cream/95 backdrop-blur border-b border-black/5 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-4 overflow-x-auto no-scrollbar">
-        <div class="flex items-center gap-3 min-w-max">
-
-            <button onclick="switchTab('parcours')" id="tab-parcours"
-                class="tab-btn active px-4 py-2 bg-white border border-black/10 text-black/70 font-bold uppercase tracking-wide text-sm rounded-sm hover:bg-black/5">
-                Parcours
-            </button>
-
-            <button onclick="switchTab('cabinet')" id="tab-cabinet"
-                class="tab-btn px-4 py-2 bg-white border border-black/10 text-black/70 font-bold uppercase tracking-wide text-sm rounded-sm hover:bg-black/5">
-                Cabinet
-            </button>
-
-            <button onclick="switchTab('distinction')" id="tab-distinction"
-                class="tab-btn px-4 py-2 bg-white border border-black/10 text-black/70 font-bold uppercase tracking-wide text-sm rounded-sm hover:bg-black/5">
-                Distinctions
-            </button>
-
-        </div>
-    </div>
-</section>
+@include('partials.onglet')
 
 
 <main class="max-w-7xl mx-auto px-4 lg:px-6 py-12">

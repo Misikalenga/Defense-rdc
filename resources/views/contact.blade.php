@@ -68,28 +68,7 @@
 </section>
 
 <!-- ONGLET BAR -->
-<section class="sticky top-[100px] z-40 bg-cream backdrop-blur border-b border-black/5 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 lg:px-6 py-4 overflow-x-auto no-scrollbar">
-        <div class="flex items-center gap-3 min-w-max">
-
-            <button onclick="switchTab('coordonnees')" id="tab-coordonnees"
-                class="contact-tab active px-4 py-2 bg-white border border-black/10 text-black/70 text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-black/5 transition">
-                Coordonnées
-            </button>
-
-            <button onclick="switchTab('presse')" id="tab-presse"
-                class="contact-tab px-4 py-2 bg-white border border-black/10 text-black/70 text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-black/5 transition">
-                Presse
-            </button>
-
-            <button onclick="switchTab('recrutement')" id="tab-recrutement"
-                class="contact-tab px-4 py-2 bg-white border border-black/10 text-black/70 text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-black/5 transition">
-                Recrutement
-            </button>
-
-        </div>
-    </div>
-</section>
+@include('partials.onglet')
 
 <main class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
 
@@ -210,38 +189,19 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
+    // Carte Leaflet
+    let map = L.map('map').setView([-4.325, 15.322], 13); // Kinshasa Gombe
 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+    }).addTo(map);
 
-// Switch des onglets
-function switchTab(tab) {
-        const tabs = ["coordonnees", "presse", "recrutement"];
+    // Retire le lien Leaflet" légalement
+    map.attributionControl.setPrefix('');
 
-        tabs.forEach(t => {
-            // Masquer les sections
-            document.getElementById(`section-${t}`).classList.add("hidden");
-            // Retirer l'état actif des onglets
-            document.getElementById(`tab-${t}`).classList.remove("active");
-        });
-
-        // Afficher la bonne section
-        document.getElementById(`section-${tab}`).classList.remove("hidden");
-        // Activer le bon onglet
-        document.getElementById(`tab-${tab}`).classList.add("active");
-    }
-
-// Carte Leaflet
-let map = L.map('map').setView([-4.325, 15.322], 13); // Kinshasa Gombe
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-}).addTo(map);
-
-// Retire le lien Leaflet" légalement
-map.attributionControl.setPrefix('');
-
-L.marker([-4.325, 15.322]).addTo(map)
-    .bindPopup("Ministère Délégué - Défense RDC<br>Kinshasa / Gombe")
-    .openPopup();
+    L.marker([-4.325, 15.322]).addTo(map)
+        .bindPopup("Ministère Délégué - Défense RDC<br>Kinshasa / Gombe")
+        .openPopup();
 </script>
 
 </body>

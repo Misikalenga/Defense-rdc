@@ -87,44 +87,13 @@
         </div>
     </section>
 
-    <!-- BARRE DE FILTRES ETENDUE -->
-    <section class="sticky top-[100px] z-40 bg-cream backdrop-blur border-b border-black/5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 lg:px-6 py-4 overflow-x-auto no-scrollbar">
-            <div class="flex items-center gap-3 min-w-max">
-                <button onclick="filterContent('all')" id="btn-all"
-                    class="filter-btn active px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Tout voir
-                </button>
-                <button onclick="filterContent('actus')" id="btn-actus"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Actualités
-                </button>
-                <!-- NOUVEAU BOUTON -->
-                <button onclick="filterContent('operations')" id="btn-operations"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Opérations
-                </button>
-                <!-- NOUVEAU BOUTON -->
-                <button onclick="filterContent('discours')" id="btn-discours"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Discours
-                </button>
-                <button onclick="filterContent('annonces')" id="btn-annonces"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Annonces
-                </button>
-                <button onclick="filterContent('decisions')" id="btn-decisions"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Décisions
-                </button>
-            </div>
-        </div>
-    </section>
+    <!-- ONGLET BAR -->
+    @include('partials.onglet')
 
     <main class="min-h-screen">
 
-        <!-- 1. SECTION ACTUALITES (General) -->
-        <section id="section-actus" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
+        <!-- 1. SECTION ACTUALITES  -->
+        <section id="section-actualites" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
             <div class="flex items-end justify-between mb-8">
                 <div>
                     <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
@@ -214,7 +183,7 @@
             </div>
         </section>
 
-        <!-- 2. NOUVELLE SECTION OPERATIONS (Actions terrain, Sécurité) -->
+        <!-- SECTION 2 : OPERATIONS -->
         <section id="section-operations" class="content-section bg-cream2 border-y border-black/10">
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
                 <div class="max-w-4xl mb-8">
@@ -276,7 +245,7 @@
             </div>
         </section>
 
-        <!-- 3. NOUVELLE SECTION DISCOURS (Allocutions, Conférences) -->
+        <!-- SECTION 3 : DISCOURS  -->
         <section id="section-discours" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
             <div class="max-w-4xl mb-8">
                 <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
@@ -347,7 +316,7 @@
             </div>
         </section>
 
-        <!-- 4. SECTION ANNONCES -->
+        <!-- SECTION 4 : ANNONCES -->
         <section id="section-annonces" class="content-section bg-cream2 border-y border-black/10">
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
                 <div class="max-w-4xl mb-8">
@@ -425,7 +394,7 @@
             </div>
         </section>
 
-        <!-- 5. SECTION DECISIONS -->
+        <!-- SECTION 5 : DECISIONS -->
         <section id="section-decisions" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
             <div class="max-w-4xl mb-8">
                 <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
