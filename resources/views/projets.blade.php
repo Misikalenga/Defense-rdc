@@ -472,7 +472,7 @@
 
             <!-- Sous-hero interne -->
 
-            <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-6 pt-12">
                 <div class="max-w-4xl">
                     <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
                         <span class="w-2 h-8 bg-rdcBlue block"></span>
@@ -814,7 +814,7 @@
         <section id="section-veterans" class="proj-section hidden">
 
 
-            <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-6 pt-12">
                 <div class="max-w-4xl">
                     <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
                         <span class="w-2 h-8 bg-rdcRed block"></span>
@@ -1133,7 +1133,7 @@
         <section id="section-cooperation" class="proj-section hidden">
 
 
-            <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-6 pt-12">
                 <div class="max-w-4xl">
                     <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
                         <span class="w-2 h-8 bg-rdcBlue block"></span>
