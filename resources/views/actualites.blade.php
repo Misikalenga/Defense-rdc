@@ -340,7 +340,7 @@
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ asset('assets/ancien-combattant-3.JPG') }}" alt="ancient combattant"
+                        <img src="{{ asset('assets/ancien-combattant-3.jpg') }}" alt="ancient combattant"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
                             class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -369,7 +369,7 @@
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ asset('assets/ancien-combattant-2.JPG') }}" alt="ancient combattant"
+                        <img src="{{ asset('assets/ancien-combattant-2.jpg') }}" alt="ancient combattant"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
                             class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -397,7 +397,7 @@
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Business_training.jpg/1024px-Business_training.jpg"
+                        <img src="{{ asset('assets/ancien-combattant-3.jpg') }}"
                             alt="Entrepreneuriat"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
@@ -426,7 +426,7 @@
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Hospital_corridor.jpg/1024px-Hospital_corridor.jpg"
+                        <img src="{{ asset('assets/histo.jpeg') }}"
                             alt="Santé"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
@@ -455,7 +455,7 @@
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Meeting_room.jpg/1024px-Meeting_room.jpg"
+                        <img src="{{ asset('assets/ancien-combattant-2.jpg') }}"
                             alt="Transparence"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
@@ -511,7 +511,7 @@
                 <div class="lg:col-span-8 flex flex-col h-full">
                         <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
                             <span class="w-2 h-10 bg-green-700 block"></span>
-                            Opérations & Terrain
+                            Opérations : Terrain & Sécurité intérieure
                         </h2>
                         <p class="mt-3 text-black/70 text-lg leading-relaxed">
                             Sécurité intérieure, inspections des troupes et actions civilo-militaires.
@@ -611,7 +611,7 @@
                     <!-- 1 -->
                     <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
                         <div class="relative h-44 overflow-hidden">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/MONUSCO_North_Kivu_Brigade_training_2013_11_21.jpg/1024px-MONUSCO_North_Kivu_Brigade_training_2013_11_21.jpg"
+                            <img src="{{ asset('assets/kalemie-soda.jpg') }}"
                                 alt="Opération"
                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -632,7 +632,7 @@
                     <!-- 2 -->
                     <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
                         <div class="relative h-44 overflow-hidden">
-                            <img src="https://defense.gouv.cd/wp-content/uploads/2023/11/WhatsApp-Image-2023-11-20-at-13.06.45-1.jpeg"
+                            <img src="{{ asset('assets/garderep.jpg') }}"
                                 alt="Génie Militaire"
                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -653,7 +653,7 @@
                     <!-- 3 -->
                     <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
                         <div class="relative h-44 overflow-hidden">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Helicopter_rescue.jpg/1024px-Helicopter_rescue.jpg"
+                            <img src="{{ asset('assets/histo.jpeg') }}"
                                 alt="Assistance"
                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -674,7 +674,7 @@
                     <!-- 4 -->
                     <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
                         <div class="relative h-44 overflow-hidden">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Classroom_training.jpg/1024px-Classroom_training.jpg"
+                            <img src="{{ asset('assets/bcc_kin.jpg') }}"
                                 alt="Formation terrain"
                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -704,7 +704,7 @@
                 <div class="lg:col-span-8 flex flex-col h-full">
                     <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
                         <span class="w-2 h-10 bg-indigo-900 block"></span>
-                        Allocutions & Conférences
+                        Discours : Allocutions & Conférences
                     </h2>
                     <p class="mt-3 text-black/70 text-lg leading-relaxed">
                         Prises de parole officielles : discours, conférences, points de presse et interviews.

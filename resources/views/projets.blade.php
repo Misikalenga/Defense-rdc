@@ -134,7 +134,7 @@
                 data-title="Centre national de coordination opérationnelle 2026">
                 <div class="grid lg:grid-cols-12">
                     <div class="lg:col-span-5 relative h-64 lg:h-full overflow-hidden">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/US_Navy_100409-N-0795M-035_Sailors_monitor_a_high-tech_combat_information_center.jpg/1024px-US_Navy_100409-N-0795M-035_Sailors_monitor_a_high-tech_combat_information_center.jpg"
+                        <img src="{{ asset('assets/histo.jpeg') }}"
                             alt="Coordination opérationnelle"
                             class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
                         <div
@@ -277,7 +277,7 @@
                     data-score="92">
                     <div class="relative h-44 overflow-hidden">
                         <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/CCTV_camera.jpg/1024px-CCTV_camera.jpg"
+                            src="{{ asset('assets/bcc_kin.jpg') }}"
                             alt="Surveillance sites stratégiques">
                         <div
                             class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -309,7 +309,7 @@
                     data-title="Digitalisation des procédures de mobilisation" data-date="2025-11-29" data-score="77">
                     <div class="relative h-44 overflow-hidden">
                         <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Server_room.jpg/1024px-Server_room.jpg"
+                            src="{{ asset('assets/soda-equipement.png') }}"
                             alt="Digitalisation">
                         <div
                             class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -341,7 +341,7 @@
                     data-score="103">
                     <div class="relative h-44 overflow-hidden">
                         <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Hospital_corridor.jpg/1024px-Hospital_corridor.jpg"
+                            src="{{ asset('assets/kalemie-soda.jpg') }}"
                             alt="Santé militaire">
                         <div
                             class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -373,7 +373,7 @@
                     data-score="65">
                     <div class="relative h-44 overflow-hidden">
                         <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Meeting_room.jpg/1024px-Meeting_room.jpg"
+                            src="{{ asset('assets/kalemie-soda.jpg') }}"
                             alt="Discipline administrative">
                         <div
                             class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -405,7 +405,7 @@
                     data-score="88">
                     <div class="relative h-44 overflow-hidden">
                         <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Helicopter_rescue.jpg/1024px-Helicopter_rescue.jpg"
+                            src="{{ asset('assets/soda-equipement.png') }}"
                             alt="Crises">
                         <div
                             class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -437,7 +437,7 @@
                     data-title="Programme de maintenance & pièces de rechange" data-date="2025-10-18" data-score="71">
                     <div class="relative h-44 overflow-hidden">
                         <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Mechanical_workshop.jpg/1024px-Mechanical_workshop.jpg"
+                            src="{{ asset('assets/garderep.jpg') }}"
                             alt="Maintenance">
                         <div
                             class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -565,7 +565,7 @@
                         data-title="Ateliers régionaux de maintenance" data-date="2025-11-27" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Workshop_tools.jpg/1024px-Workshop_tools.jpg"
+                                src="{{ asset('assets/garderep.jpg') }}"
                                 alt="Ateliers maintenance">
                             <div
                                 class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -595,7 +595,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Radio_communication.jpg/1024px-Radio_communication.jpg"
+                                src="{{ asset('assets/ancien-combattant-3.jpg') }}"
                                 alt="Communication">
                             <div
                                 class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -624,7 +624,7 @@
                         data-title="Stocks stratégiques : pièces et consommables" data-date="2025-10-25" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Warehouse_storage.jpg/1024px-Warehouse_storage.jpg"
+                                src="{{ asset('assets/soda-equipement.png') }}"
                                 alt="Stocks">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -654,7 +654,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Barracks_building.jpg/1024px-Barracks_building.jpg"
+                                src="{{ asset('assets/kalemie-soda.jpg') }}"
                                 alt="Casernement">
                             <div
                                 class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -695,7 +695,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Classroom_training.jpg/1024px-Classroom_training.jpg"
+                                src="{{ asset('assets/ancien-combattant-2.jpg') }}"
                                 alt="Leadership">
                             <div
                                 class="absolute top-4 left-4 bg-indigo-900 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -723,7 +723,7 @@
                         data-title="Formation technique : transmissions & cyber" data-date="2025-11-05" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Computer_security_training.jpg/1024px-Computer_security_training.jpg"
+                                src="{{ asset('assets/garderep.jpg') }}"
                                 alt="Cyber">
                             <div
                                 class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -752,7 +752,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/MONUSCO_North_Kivu_Brigade_training_2013_11_21.jpg/1024px-MONUSCO_North_Kivu_Brigade_training_2013_11_21.jpg"
+                                src="{{ asset('assets/ancien-combattant-1.JPG') }}"
                                 alt="Terrain">
                             <div
                                 class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -781,7 +781,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Logistics_center.jpg/1024px-Logistics_center.jpg"
+                                src="{{ asset('assets/bcc_kin.jpg') }}"
                                 alt="Logistique">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -835,7 +835,7 @@
                     <div class="grid lg:grid-cols-12">
                         <div class="lg:col-span-5 relative h-64 lg:h-full overflow-hidden">
                             <img class="w-full h-full object-cover object-center hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/ID_card.jpg/1024px-ID_card.jpg"
+                                src="{{ asset('assets/ancien-combattant-3.jpg') }}"
                                 alt="Carte vétéran">
                             <div
                                 class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -899,7 +899,7 @@
                         data-title="Fonds d’appui à la reconversion" data-date="2025-11-26" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Business_training.jpg/1024px-Business_training.jpg"
+                                src="{{ asset('assets/histo.jpeg') }}"
                                 alt="Reconversion">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -927,7 +927,7 @@
                         data-title="Programme formation métiers techniques" data-date="2025-11-09" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Welding_training.jpg/1024px-Welding_training.jpg"
+                                src="{{ asset('assets/kalemie-soda.jpg') }}"
                                 alt="Métiers">
                             <div
                                 class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -955,7 +955,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Job_interview.jpg/1024px-Job_interview.jpg"
+                                src="{{ asset('assets/ancien-combattant-2.jpg') }}"
                                 alt="Emploi">
                             <div
                                 class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -982,7 +982,7 @@
                         data-title="Cellules d’accompagnement psychosocial" data-date="2025-10-04" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Counseling_room.jpg/1024px-Counseling_room.jpg"
+                                src="{{ asset('assets/ancien-combattant-3.jpg') }}"
                                 alt="Accompagnement">
                             <div
                                 class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1020,7 +1020,7 @@
                         data-title="Modernisation des pensions" data-date="2025-11-18" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Office_paperwork.jpg/1024px-Office_paperwork.jpg"
+                                src="{{ asset('assets/histo.jpeg') }}"
                                 alt="Pensions">
                             <div
                                 class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1047,7 +1047,7 @@
                         data-title="Parcours santé prioritaire" data-date="2025-10-28" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Hospital_corridor.jpg/1024px-Hospital_corridor.jpg"
+                                src="{{ asset('assets/ancien-combattant-1.JPG') }}"
                                 alt="Santé">
                             <div
                                 class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1074,7 +1074,7 @@
                         data-title="Guichet unique vétérans" data-date="2025-10-12" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Reception_desk.jpg/1024px-Reception_desk.jpg"
+                                src="{{ asset('assets/garderep.jpg') }}"
                                 alt="Guichet">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1101,7 +1101,7 @@
                         data-title="Observatoire des droits & médiation" data-date="2025-09-30" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Meeting_room.jpg/1024px-Meeting_room.jpg"
+                                src="{{ asset('assets/ancien-combattant-2.jpg') }}"
                                 alt="Médiation">
                             <div
                                 class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1154,7 +1154,7 @@
                     <div class="flex flex-col lg:flex-row gap-8">
                         <div class="lg:w-2/5 relative h-56 lg:h-auto overflow-hidden border border-black/10">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Conference_room.jpg/1024px-Conference_room.jpg"
+                                src="{{ asset('assets/kalemie-soda.jpg') }}"
                                 alt="Coopération">
                             <div
                                 class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1222,7 +1222,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Classroom_training.jpg/1024px-Classroom_training.jpg"
+                                src="{{ asset('assets/histo.jpeg') }}"
                                 alt="Échanges">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1250,7 +1250,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Radio_communication.jpg/1024px-Radio_communication.jpg"
+                                src="{{ asset('assets/ancien-combattant-1.JPG') }}"
                                 alt="Interop">
                             <div
                                 class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1277,7 +1277,7 @@
                         data-title="Logistique : corridor d’appui humanitaire" data-date="2025-10-07" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Warehouse_storage.jpg/1024px-Warehouse_storage.jpg"
+                                src="{{ asset('assets/ancien-combattant-1.JPG') }}"
                                 alt="Corridor">
                             <div
                                 class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1305,7 +1305,7 @@
                         data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Mechanical_workshop.jpg/1024px-Mechanical_workshop.jpg"
+                                src="{{ asset('assets/ancien-combattant-2.jpg') }}"
                                 alt="Ateliers">
                             <div
                                 class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1343,7 +1343,7 @@
                         data-title="Cadre de dialogue transfrontalier" data-date="2025-11-02" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Conference_room.jpg/1024px-Conference_room.jpg"
+                                src="{{ asset('assets/kalemie-soda.jpg') }}"
                                 alt="Dialogue">
                             <div
                                 class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1370,7 +1370,7 @@
                         data-title="Plan de réduction des incidents" data-date="2025-10-16" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Reception_desk.jpg/1024px-Reception_desk.jpg"
+                                src="{{ asset('assets/garderep.jpg') }}"
                                 alt="Incidents">
                             <div
                                 class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1398,7 +1398,7 @@
                         data-title="Dispositif de confiance et transparence" data-date="2025-09-28" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Meeting_room.jpg/1024px-Meeting_room.jpg"
+                                src="{{ asset('assets/ancien-combattant-2.jpg') }}"
                                 alt="Confiance">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -1425,7 +1425,7 @@
                         data-title="Exercices conjoints de gestion de crise" data-date="2025-09-10" data-score="0">
                         <div class="relative h-44 overflow-hidden">
                             <img class="w-full h-full object-cover hover:scale-105 transition duration-500"
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Helicopter_rescue.jpg/1024px-Helicopter_rescue.jpg"
+                                src="{{ asset('assets/ancien-combattant-1.JPG') }}"
                                 alt="Crise">
                             <div
                                 class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">

@@ -148,10 +148,17 @@
         };
 
 
-        // Active automatiquement le premier onglet au chargement
-        const firstTab = window.pageTabs[0];
-        if (firstTab) {
-            window.switchTab(firstTab);
+        // --- Activation automatique via ?tab=xxx ---
+        const params = new URLSearchParams(window.location.search);
+        const requestedTab = params.get("tab");
+
+        // Si l'onglet demandé existe, on l'active
+        if (requestedTab && window.pageTabs.includes(requestedTab)) {
+            window.switchTab(requestedTab);
+        } else {
+            // Sinon onglet par défaut (le premier)
+            const firstTab = window.pageTabs[0];
+            if (firstTab) window.switchTab(firstTab);
         }
 
     });

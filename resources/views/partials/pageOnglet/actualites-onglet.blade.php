@@ -1,5 +1,5 @@
 <script>
-    window.pageTabs = ["actualites", "operations", "discours", "annonces", "decisions"];
+    window.pageTabs = ["actualites", "annonces", "decisions", "discours", "operations"];
 </script>
 
 <!-- ONGLET SCROLLABLE -->
@@ -11,16 +11,6 @@
       actualités
     </button>
 
-    <button onclick="switchTab('operations')" id="tab-operations"
-      class="proj-tab px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-blue-50 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-      operations
-    </button>
-
-    <button onclick="switchTab('discours')" id="tab-discours"
-      class="proj-tab px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-blue-50 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-      discours
-    </button>
-
     <button onclick="switchTab('annonces')" id="tab-annonces"
       class="proj-tab px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-blue-50 text-sm font-bold uppercase tracking-wide rounded-sm transition">
       annonces
@@ -29,6 +19,16 @@
     <button onclick="switchTab('decisions')" id="tab-decisions"
       class="proj-tab px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-blue-50 text-sm font-bold uppercase tracking-wide rounded-sm transition">
       decisions
+    </button>
+
+    <button onclick="switchTab('discours')" id="tab-discours"
+      class="proj-tab px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-blue-50 text-sm font-bold uppercase tracking-wide rounded-sm transition">
+      discours
+    </button>
+
+    <button onclick="switchTab('operations')" id="tab-operations"
+      class="proj-tab px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-blue-50 text-sm font-bold uppercase tracking-wide rounded-sm transition">
+      operations
     </button>
 
   </div>

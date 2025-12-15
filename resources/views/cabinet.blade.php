@@ -115,7 +115,7 @@
 
         <!-- MINISTRE -->
         <div class="bg-white border shadow-soft border-black/10 p-6 flex gap-4">
-            <img src="/assets/ministre.jpg" class="w-24 h-24 object-cover rounded" />
+            <img src="/assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" class="w-24 h-24 object-cover rounded" />
             <div>
                 <h4 class="font-bold text-lg">Ministre Délégué</h4>
                 <p class="text-black/60 text-sm">Chef du Département</p>
@@ -131,7 +131,7 @@
 
         <!-- CHEF DE CABINET -->
         <div class="bg-white border shadow-soft border-black/10 p-6 flex gap-4">
-            <img src="/assets/cabinet1.jpg" class="w-24 h-24 object-cover rounded" />
+            <img src="/assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" class="w-24 h-24 object-cover rounded" />
             <div>
                 <h4 class="font-bold text-lg">Directeur de Cabinet</h4>
                 <p class="text-black/60 text-sm">Coordination stratégique</p>
@@ -147,7 +147,7 @@
 
         <!-- CHEF ADJOINT -->
         <div class="bg-white border shadow-soft border-black/10 p-6 flex gap-4">
-            <img src="/assets/cabinet2.jpg" class="w-24 h-24 object-cover rounded" />
+            <img src="/assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" class="w-24 h-24 object-cover rounded" />
             <div>
                 <h4 class="font-bold text-lg">Directeur de Cabinet Adjoint</h4>
                 <p class="text-black/60 text-sm">Appui opérationnel</p>
@@ -163,7 +163,7 @@
 
         <!-- CONSEILLER PRINCIPAL -->
         <div class="bg-white border shadow-soft border-black/10 p-6 flex gap-4">
-            <img src="/assets/membre3.jpg" class="w-24 h-24 object-cover rounded" />
+            <img src="/assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" class="w-24 h-24 object-cover rounded" />
             <div>
                 <h4 class="font-bold text-lg">Conseiller Principal</h4>
                 <p class="text-black/60 text-sm">Analyse & stratégie</p>
@@ -187,7 +187,7 @@
 
         <!-- TEMPLATE MEMBRE -->
         <div class="bg-white border border-black/10 shadow-soft p-5 flex gap-4">
-            <img src="/assets/membre4.jpg" class="w-20 h-20 object-cover rounded" />
+            <img src="/assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" class="w-20 h-20 object-cover rounded" />
             <div class="flex-1">
                 <h4 class="font-bold">Chargé des Programmes</h4>
                 <p class="text-black/60 text-sm">Planification et évaluation</p>
@@ -200,7 +200,7 @@
         </div>
 
         <div class="bg-white border border-black/10 shadow-soft p-5 flex gap-4">
-            <img src="/assets/membre5.jpg" class="w-20 h-20 object-cover rounded" />
+            <img src="/assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" class="w-20 h-20 object-cover rounded" />
             <div class="flex-1">
                 <h4 class="font-bold">Chargé de Communication</h4>
                 <p class="text-black/60 text-sm">Relations publiques</p>

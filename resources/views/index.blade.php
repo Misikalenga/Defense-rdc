@@ -162,7 +162,7 @@
                     <!-- BLOC 1 -->
                     <div class="aspect-square bg-white border border-black/10 shadow-soft relative overflow-hidden">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,115,207,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(206,17,38,0.12),transparent_45%)]"></div>
-                        <img src="assets/MINISTRE_1.jpg" alt="Nom Ministre 1" class="w-full h-full object-cover">
+                        <img src="assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" alt="Nom Ministre 1" class="w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 right-0 bg-white/90 px-4  border-t border-black/10">
                             <p class="font-semibold">Nom Ministre 1</p>
                             <p class="text-sm text-black/70">Titre du Ministre</p>
@@ -172,7 +172,7 @@
                     <!-- BLOC 2 -->
                     <div class="aspect-square bg-white border border-black/10 shadow-soft relative overflow-hidden">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,115,207,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(206,17,38,0.12),transparent_45%)]"></div>
-                        <img src="assets/MINISTRE_2.jpg" alt="Nom Ministre 2" class="w-full h-full object-cover">
+                        <img src="assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" alt="Nom Ministre 2" class="w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 right-0 bg-white/90 px-4  border-t border-black/10">
                             <p class="font-semibold">Nom Ministre 2</p>
                             <p class="text-sm text-black/70">Titre du Ministre</p>
@@ -182,7 +182,7 @@
                     <!-- BLOC 3 caché en version telephone-->
                     <div class="aspect-square bg-white border border-black/10 hidden lg:block shadow-soft relative overflow-hidden">
                         <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,115,207,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(206,17,38,0.12),transparent_45%)]"></div>
-                        <img src="assets/MINISTRE_3.jpg" alt="Nom Ministre 3" class="w-full h-full object-cover">
+                        <img src="assets/NTAMBWE_MPOSHI_CHARMANT_ELIEZER_cropped.png" alt="Nom Ministre 3" class="w-full h-full object-cover">
                         <div class="absolute bottom-0 left-0 right-0 bg-white/90 px-4  border-t border-black/10">
                             <p class="font-semibold">Nom Ministre 3</p>
                             <p class="text-sm text-black/70">Titre du Ministre</p>
@@ -285,7 +285,7 @@
 
                 <article class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition">
                     <div class="relative h-40 w-full overflow-hidden">
-                        <img src="assets/ancien-combattant-3.JPG" alt="ancient combattant" class="w-full h-full object-cover object-center">
+                        <img src="assets/ancien-combattant-3.jpg" alt="ancient combattant" class="w-full h-full object-cover object-center">
                         <div class="absolute inset-0 bg-gradient-to-br from-rdcRed/30 to-cream2/40"></div>
                     </div>
                     <div class="p-5">
