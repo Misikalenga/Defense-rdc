@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ActualiteController;
+use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\PageController;
@@ -63,6 +64,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('actualites', ActualiteController::class);
+    Route::resource('categories', CategorieController::class)->except(['show']);
 });
 
 

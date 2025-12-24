@@ -1,47 +1,59 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="container-fluid">
-        <h1 class="h3 mb-4 text-gray-800">Modifier une actualité</h1>
+<div class="bg-white rounded-lg shadow-sm border border-black/5 p-6">
+    <h3 class="font-bold text-lg mb-4">Modifier l'actualité</h3>
 
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <form action="{{ route('admin.actualites.update', $actualite) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="title">Titre</label>
-                        <input type="text" name="title" id="title" class="form-control" value="{{ $actualite->title }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">Contenu</label>
-                        <textarea name="content" id="content" class="form-control" rows="5" required>{{ $actualite->content }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Catégorie</label>
-                        <input type="text" name="category" id="category" class="form-control" value="{{ $actualite->category }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Statut</label>
-                        <select name="status" id="status" class="form-control" required>
-                            <option value="draft" {{ $actualite->status == 'draft' ? 'selected' : '' }}>Brouillon</option>
-                            <option value="published" {{ $actualite->status == 'published' ? 'selected' : '' }}>Publié</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="published_at">Date de publication</label>
-                        <input type="date" name="published_at" id="published_at" class="form-control" value="{{ $actualite->published_at ? $actualite->published_at->format('Y-m-d') : '' }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" name="image" id="image" class="form-control">
-                        @if($actualite->image)
-                            <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}" class="img-fluid mt-2" style="max-height: 150px;">
-                        @endif
-                    </div>
-                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
-                </form>
+    <form action="{{ route('admin.actualites.update', $actualite) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        @csrf
+        @method('PUT')
+        <div>
+            <label for="title" class="text-sm font-medium text-black/70">Titre</label>
+            <input type="text" name="title" id="title" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" value="{{ $actualite->title }}" required>
+        </div>
+
+        <div>
+            <label for="content" class="text-sm font-medium text-black/70">Contenu</label>
+            <textarea name="content" id="content" rows="5" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" required>{{ $actualite->content }}</textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="categorie_id" class="text-sm font-medium text-black/70">Catégorie</label>
+                <select name="categorie_id" id="categorie_id" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" required>
+                    <option value="">-- Sélectionnez une catégorie --</option>
+                    @foreach($categories as $categorie)
+                        <option value="{{ $categorie->id }}" @if(old('categorie_id', $actualite->categorie_id) == $categorie->id) selected @endif>{{ $categorie->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="status" class="text-sm font-medium text-black/70">Statut</label>
+                <select name="status" id="status" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" required>
+                    <option value="draft" @if($actualite->status == 'draft') selected @endif>Brouillon</option>
+                    <option value="published" @if($actualite->status == 'published') selected @endif>Publié</option>
+                </select>
             </div>
         </div>
-    </div>
+
+        <div>
+            <label for="published_at" class="text-sm font-medium text-black/70">Date de publication</label>
+            <input type="date" name="published_at" id="published_at" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" value="{{ $actualite->published_at ? $actualite->published_at->format('Y-m-d') : '' }}">
+        </div>
+
+        <div>
+            <label for="image" class="text-sm font-medium text-black/70">Image de couverture</label>
+            <input type="file" name="image" id="image" class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-rdcBlue hover:file:bg-blue-100"/>
+            @if($actualite->image)
+                <img src="{{ asset('storage/' . $actualite->image) }}" class="mt-2 rounded-md h-24">
+            @endif
+        </div>
+
+        <div class="flex justify-end pt-4">
+            <button type="submit" class="bg-rdcBlue text-white px-4 py-2 text-sm font-bold uppercase tracking-wide hover:bg-rdcBlue/90 transition rounded">
+                Mettre à jour
+            </button>
+        </div>
+    </form>
+</div>
 @endsection

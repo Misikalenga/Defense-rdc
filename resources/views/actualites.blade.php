@@ -196,7 +196,7 @@
                                 class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                À la une • {{ $featured->category }}
+                                À la une • {{ $featured->categorie->name ?? 'N/A' }}
                             </div>
                         </div>
 
@@ -257,7 +257,7 @@
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
                             class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                            {{ $actualite->category }}
+                            {{ $actualite->categorie->name ?? 'N/A' }}
                         </div>
                     </div>
                     <div class="p-6">

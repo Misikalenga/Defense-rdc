@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Actualite;
 use App\Services\ActualiteService;
+use App\Services\CategorieService;
 use Illuminate\Http\Request;
 
 class ActualiteController extends Controller
 {
     protected $actualiteService;
+    protected $categorieService;
 
-    public function __construct(ActualiteService $actualiteService)
+    public function __construct(ActualiteService $actualiteService, CategorieService $categorieService)
     {
         $this->actualiteService = $actualiteService;
+        $this->categorieService = $categorieService;
     }
 
     /**
@@ -30,7 +33,8 @@ class ActualiteController extends Controller
      */
     public function create()
     {
-        return view('admin.actualites.create');
+        $categories = $this->categorieService->getAllCategories();
+        return view('admin.actualites.create', compact('categories'));
     }
 
     /**
@@ -41,7 +45,7 @@ class ActualiteController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'category' => 'required|string|max:255',
+            'categorie_id' => 'required|exists:categories,id',
             'status' => 'required|string|in:draft,published',
             'published_at' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -71,7 +75,8 @@ class ActualiteController extends Controller
      */
     public function edit(Actualite $actualite)
     {
-        return view('admin.actualites.edit', compact('actualite'));
+        $categories = $this->categorieService->getAllCategories();
+        return view('admin.actualites.edit', compact('actualite', 'categories'));
     }
 
     /**
@@ -82,7 +87,7 @@ class ActualiteController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'category' => 'required|string|max:255',
+            'categorie_id' => 'required|exists:categories,id',
             'status' => 'required|string|in:draft,published',
             'published_at' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
