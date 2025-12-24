@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ActualiteController;
+use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\ProfileController;
+
+use App\Http\Controllers\PageController;
 
 // ------------------------
 // PAGE D’ACCUEIL (publique)
@@ -14,9 +18,30 @@ Route::get('/', function () {
 // ------------------------
 // PAGE ACTUALITÉS (publique)
 // ------------------------
-Route::get('/actualites', function () {
-    return view('actualites');
-})->name('actualites');
+Route::get('/actualites', [PageController::class, 'actualites'])->name('actualites');
+
+// ------------------------
+// PAGE PROJETS (publique)
+// ------------------------
+Route::get('/projets', function () {
+    return view('projets');
+})->name('projets');
+
+// ------------------------
+// PAGE CABINET (publique)
+// ------------------------
+Route::get('/cabinet', function () {
+    return view('cabinet');
+})->name('cabinet');
+
+
+// ------------------------
+// PAGE CONTACT (publique)
+// ------------------------
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 
 // ------------------------
 // PROFIL & LOGOUT DE BREEZE
@@ -34,11 +59,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // ------------------------
-// TON ESPACE ADMIN PERSONNALISÉ
+// ESPACE ADMIN
 // ------------------------
-Route::middleware(['auth'])
-    ->get('/admin', [AdminController::class, 'dashboard'])
-    ->name('admin.dashboard');
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::resource('actualites', ActualiteController::class);
+    Route::resource('categories', CategorieController::class)->except(['show']);
+});
+
 
 // ------------------------
 // ROUTES D'AUTHENTIFICATION BREEZE

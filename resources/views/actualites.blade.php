@@ -58,9 +58,46 @@
         /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar {
             -ms-overflow-style: none;
-            /* IE and Edge */
             scrollbar-width: none;
-            /* Firefox */
+        }
+
+        /* Clamp sans plugin */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-6 {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Animation douce */
+        .fade-in {
+            animation: fadeIn .25s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -73,7 +110,7 @@
     @include('partials.header')
 
     <!-- HERO SECTION -->
-    <section class="bg-ink text-white py-12 md:py-20 relative overflow-hidden">
+    <section class="bg-ink text-white py-12 md:py-20 relative overflow-hidden min-h-[340px]">
         <div class="absolute inset-0 bg-rdcBlue/10"></div>
         <div class="absolute -right-20 -top-20 w-96 h-96 bg-rdcBlue/20 rounded-full blur-3xl"></div>
 
@@ -87,205 +124,426 @@
         </div>
     </section>
 
-    <!-- BARRE DE FILTRES ETENDUE -->
-    <section class="sticky top-[64px] z-40 bg-cream/95 backdrop-blur border-b border-black/5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 lg:px-6 py-4 overflow-x-auto no-scrollbar">
-            <div class="flex items-center gap-3 min-w-max">
-                <button onclick="filterContent('all')" id="btn-all"
-                    class="filter-btn active px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Tout voir
-                </button>
-                <button onclick="filterContent('actus')" id="btn-actus"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Actualités
-                </button>
-                <!-- NOUVEAU BOUTON -->
-                <button onclick="filterContent('operations')" id="btn-operations"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Opérations
-                </button>
-                <!-- NOUVEAU BOUTON -->
-                <button onclick="filterContent('discours')" id="btn-discours"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Discours
-                </button>
-                <button onclick="filterContent('annonces')" id="btn-annonces"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Annonces
-                </button>
-                <button onclick="filterContent('decisions')" id="btn-decisions"
-                    class="filter-btn px-4 py-2 bg-white border border-black/10 text-black/70 hover:bg-black/5 text-sm font-bold uppercase tracking-wide rounded-sm transition">
-                    Décisions
-                </button>
-            </div>
-        </div>
-    </section>
+    <!-- ONGLET BAR -->
+    @include('partials.onglet')
 
     <main class="min-h-screen">
 
-        <!-- 1. SECTION ACTUALITES (General) -->
-        <section id="section-actus" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
-            <div class="flex items-end justify-between mb-8">
-                <div>
-                    <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
-                        <span class="w-2 h-8 bg-rdcBlue block"></span>
+        <!-- 1. SECTION ACTUALITES  -->
+        <section id="section-actualites" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12 fade-in">
+
+            <!-- Header enrichi + “dashboard” style pro -->
+            <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
+                <div class="lg:col-span-8 flex flex-col h-full">
+                    <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
+                        <span class="w-2 h-10 bg-rdcBlue block"></span>
                         Actualités
                     </h2>
-                </div>
-            </div>
+                    <p class="mt-3 text-black/70 text-lg leading-relaxed">
+                        Communiqués officiels, initiatives sociales pour les vétérans, modernisation des pensions,
+                        cérémonies et actions du Ministère en faveur des anciens combattants de la RDC.
+                    </p>
 
-            <div class="grid lg:grid-cols-3 gap-6">
-
-                <article
-                    class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
-                    <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ asset('assets/bcc_kin.jpg') }}" alt="ancient combattant"
-                            class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                        <div
-                            class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                            Communiqué
+                    <!-- Mini dashboard -->
+                    <div class="mt-auto grid sm:grid-cols-3 gap-4">
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Publications</p>
+                            <p class="text-3xl font-extrabold mt-2">68</p>
+                            <p class="text-xs text-black/50 mt-1">Derniers 90 jours</p>
+                        </div>
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Dossiers vétérans</p>
+                            <p class="text-3xl font-extrabold mt-2">14</p>
+                            <p class="text-xs text-black/50 mt-1">Réinsertion • Droits • Santé</p>
+                        </div>
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Accès rapide</p>
+                            <p class="text-sm font-semibold mt-3 text-black/70">PDF • Vidéos • Photos</p>
+                            <p class="text-xs text-black/50 mt-1">Espace média & archives</p>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-xs font-mono text-black/50 mb-2">20 Nov 2025</p>
-                        <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-rdcBlue transition">
-                            Lancement du Fonds National d’Appui aux Anciens Combattants
-                        </h3>
-                        <p class="text-sm text-black/70 line-clamp-3">
-                            Mise en place d’aides financières, de soins prioritaires et de dispositifs de soutien social
-                            pour les vétérans.
-                        </p>
-                        <a href="#"
-                            class="inline-block mt-4 text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Lire
-                            la suite</a>
+
+
+                </div>
+
+                <!-- Note latérale pro -->
+                <aside class="lg:col-span-4 bg-ink text-white p-6 shadow-soft relative overflow-hidden">
+                    <div class="absolute -right-16 -bottom-16 w-56 h-56 bg-rdcBlue/25 rounded-full blur-2xl"></div>
+                    <div class="relative z-10">
+                        <p class="text-rdcGold font-bold uppercase tracking-widest text-xs">Brief média</p>
+                        <h3 class="text-xl font-extrabold mt-2">Priorités de publication</h3>
+                        <ul class="mt-4 space-y-2 text-white/80 text-sm">
+                            <li>• Droits sociaux des anciens combattants</li>
+                            <li>• Réinsertion : formation, emploi, fonds d’appui</li>
+                            <li>• Santé & prise en charge des blessés</li>
+                            <li>• Transparence : arrêtés, décisions, notes</li>
+                        </ul>
+                        <button
+                            class="mt-5 bg-white text-ink px-4 py-2 text-sm font-bold uppercase tracking-wide hover:bg-cream transition">
+                            Télécharger le kit presse
+                        </button>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Article “le plus récent” mis en avant (style priorité 2026) -->
+            @if($actualites->count() > 0)
+                @php $featured = $actualites->first(); @endphp
+                <article class="bg-white border border-black/10 shadow-soft overflow-hidden mb-10">
+                    <div class="grid lg:grid-cols-12">
+                        <div class="lg:col-span-5 relative h-64 lg:h-full overflow-hidden">
+                            <img src="{{ (\Illuminate\Support\Str::startsWith($featured->image, ['http://','https://']) ? $featured->image : asset('storage/' . $featured->image)) }}" alt="{{ $featured->title }}"
+                                class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                À la une • {{ $featured->categorie->name ?? 'N/A' }}
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 p-6 md:p-8">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <p class="text-xs font-mono text-black/50 mb-2">Communiqué • {{ $featured->published_at->format('d M Y') }}</p>
+                                    <h3 class="text-2xl font-extrabold leading-tight">
+                                        {{ $featured->title }}
+                                    </h3>
+                                    <p class="mt-3 text-black/70 leading-relaxed line-clamp-6">
+                                        {{ Str::limit(strip_tags($featured->content), 300) }}
+                                    </p>
+                                </div>
+
+                                <!-- Indicateurs “backend” -->
+                                <div class="shrink-0 text-right">
+                                    <p class="text-[10px] font-bold uppercase tracking-widest text-black/50">Indicateurs</p>
+                                    <div class="mt-2 space-y-2">
+                                        <div class="bg-cream2 border border-black/10 px-3 py-2">
+                                            <p class="text-[10px] text-black/50 uppercase tracking-widest">Lectures</p>
+                                            <p class="font-mono text-sm font-bold text-ink">{{ $featured->views }}</p>
+                                        </div>
+                                        <div class="bg-cream2 border border-black/10 px-3 py-2">
+                                            <p class="text-[10px] text-black/50 uppercase tracking-widest">Partages</p>
+                                            <p class="font-mono text-sm font-bold text-ink">{{ $featured->shares }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap items-center gap-3">
+                                <a href="#"
+                                    class="bg-rdcBlue text-white px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-rdcBlue/90 transition">
+                                    Lire le dossier complet
+                                </a>
+                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">
+                                    Voir plus →
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </article>
+            @endif
 
+            <!-- Grille de news (4+) -->
+            <h3 class="text-xl font-extrabold uppercase tracking-wide flex items-center gap-3 mb-6">
+                <span class="w-2 h-7 bg-rdcBlue block"></span>
+                Dernières publications
+            </h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($actualites->skip(1) as $actualite)
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ asset('assets/ancien-combattant-1.JPG') }}" alt="ancient combattant"
+                        <img src="{{ (\Illuminate\Support\Str::startsWith($actualite->image, ['http://','https://']) ? $actualite->image : asset('storage/' . $actualite->image)) }}" alt="{{ $actualite->title }}"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
                             class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                            Cérémonie
+                            {{ $actualite->categorie->name ?? 'N/A' }}
                         </div>
                     </div>
                     <div class="p-6">
-                        <p class="text-xs font-mono text-black/50 mb-2">18 Nov 2025</p>
-                        <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-rdcBlue transition">
-                            Hommage national aux vétérans et blessés de guerre
+                        <p class="text-xs font-mono text-black/50 mb-2">{{ $actualite->published_at->format('d M Y') }}</p>
+                        <h3 class="font-extrabold text-lg leading-tight mb-3 group-hover:text-rdcBlue transition">
+                            {{ $actualite->title }}
                         </h3>
                         <p class="text-sm text-black/70 line-clamp-3">
-                            Cérémonie officielle dédiée à la reconnaissance des anciens combattants ayant servi la
-                            Nation.
+                            {{ Str::limit(strip_tags($actualite->content), 100) }}
                         </p>
-                        <a href="#"
-                            class="inline-block mt-4 text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Lire
-                            la suite</a>
-                    </div>
-                </article>
 
-                <article
-                    class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
-                    <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ asset('assets/ancien-combattant-3.JPG') }}" alt="ancient combattant"
-                            class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
-                        <div
-                            class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                            Réforme
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Article</span>
+                            <a href="#"
+                                class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Lire →</a>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-xs font-mono text-black/50 mb-2">12 Nov 2025</p>
-                        <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-rdcBlue transition">
-                            Modernisation du système des pensions militaires
-                        </h3>
-                        <p class="text-sm text-black/70 line-clamp-3">
-                            Simplification des démarches, revalorisation des pensions et numérique au service des
-                            anciens combattants.
-                        </p>
-                        <a href="#"
-                            class="inline-block mt-4 text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Lire
-                            la suite</a>
-                    </div>
                 </article>
-
+                @endforeach
             </div>
-        </section>
 
-        <!-- 2. NOUVELLE SECTION OPERATIONS (Actions terrain, Sécurité) -->
-        <section id="section-operations" class="content-section bg-cream2 border-y border-black/10">
-            <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
-                <div class="max-w-4xl mb-8">
-                    <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
-                        <span class="w-2 h-8 bg-green-700 block"></span>
-                        Opérations & Terrain
-                    </h2>
-                    <p class="mt-2 text-black/70 ml-5">
-                        Sécurité intérieure, inspections des troupes et actions civilo-militaires.
+            <!-- Bandeau d’archives -->
+            <div class="mt-10 bg-white border border-black/10 shadow-soft p-6 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-black/50">Archives</p>
+                    <h4 class="text-lg font-extrabold mt-1">Consulter toutes les actualités</h4>
+                    <p class="text-sm text-black/70 mt-1">
+                        Recherche avancée, filtres par thème, date, province et type de publication.
                     </p>
                 </div>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Article Opération 1 -->
-                    <div
-                        class="bg-white border border-black/10 flex flex-col md:flex-row h-full shadow-soft hover:shadow-lg transition group">
-                        <div class="md:w-2/5 relative h-48 md:h-auto overflow-hidden">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/MONUSCO_North_Kivu_Brigade_training_2013_11_21.jpg/800px-MONUSCO_North_Kivu_Brigade_training_2013_11_21.jpg"
-                                alt="Opération"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-green-900/10 group-hover:bg-transparent transition"></div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-center">
-                            <div class="mb-2">
-                                <span
-                                    class="text-[10px] font-bold uppercase tracking-widest text-green-700 bg-green-50 px-2 py-1">Sécurité
-                                    Intérieure</span>
-                            </div>
-                            <h3 class="font-bold text-xl mb-2 group-hover:text-green-700 transition">Inspection de la
-                                32ème Région Militaire</h3>
-                            <p class="text-sm text-black/70 mb-4">Visite de commandement en Ituri pour évaluer les
-                                dispositifs de protection des populations civiles.</p>
-                            <p class="text-xs text-black/40 font-mono">02 Déc 2025</p>
-                        </div>
-                    </div>
-
-                    <!-- Article Opération 2 -->
-                    <div
-                        class="bg-white border border-black/10 flex flex-col md:flex-row h-full shadow-soft hover:shadow-lg transition group">
-                        <div class="md:w-2/5 relative h-48 md:h-auto overflow-hidden">
-                            <img src="https://defense.gouv.cd/wp-content/uploads/2023/11/WhatsApp-Image-2023-11-20-at-13.06.45-1.jpeg"
-                                alt="Génie Militaire"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-center">
-                            <div class="mb-2">
-                                <span
-                                    class="text-[10px] font-bold uppercase tracking-widest text-rdcBlue bg-blue-50 px-2 py-1">Génie
-                                    Militaire</span>
-                            </div>
-                            <h3 class="font-bold text-xl mb-2 group-hover:text-rdcBlue transition">Réhabilitation de la
-                                route Kananga-Kalamba Mbuji</h3>
-                            <p class="text-sm text-black/70 mb-4">Le corps du Génie déployé pour accélérer les travaux
-                                de désenclavement du Kasaï-Central.</p>
-                            <p class="text-xs text-black/40 font-mono">28 Nov 2025</p>
-                        </div>
-                    </div>
+                <div class="flex flex-wrap gap-3">
+                    <button class="px-5 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition">
+                        Ouvrir l’archive
+                    </button>
+                    <button class="bg-rdcBlue text-white px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-rdcBlue/90 transition">
+                        Recherche avancée
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- 3. NOUVELLE SECTION DISCOURS (Allocutions, Conférences) -->
+
+        <!-- SECTION 2 : OPERATIONS -->
+        <section id="section-operations" class="content-section bg-cream2 border-y border-black/10">
+            <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
+
+                <!-- Header section amélioré -->
+            <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
+                <div class="lg:col-span-8 flex flex-col h-full">
+                        <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
+                            <span class="w-2 h-10 bg-green-700 block"></span>
+                            Opérations : Terrain & Sécurité intérieure
+                        </h2>
+                        <p class="mt-3 text-black/70 text-lg leading-relaxed">
+                            Sécurité intérieure, inspections des troupes et actions civilo-militaires.
+                            Chaque opération est documentée : objectifs, zone, unités engagées, résultats et médias.
+                        </p>
+
+                        <!-- Mini stats -->
+                        <div class="mt-auto grid sm:grid-cols-3 gap-4">
+                            <div class="bg-white border border-black/10 shadow-soft p-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Missions actives</p>
+                                <p class="text-3xl font-extrabold mt-2">9</p>
+                                <p class="text-xs text-black/50 mt-1">Suivi hebdomadaire</p>
+                            </div>
+                            <div class="bg-white border border-black/10 shadow-soft p-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Zones couvertes</p>
+                                <p class="text-3xl font-extrabold mt-2">14</p>
+                                <p class="text-xs text-black/50 mt-1">Régions & secteurs</p>
+                            </div>
+                            <div class="bg-white border border-black/10 shadow-soft p-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Rapports publiés</p>
+                                <p class="text-3xl font-extrabold mt-2">27</p>
+                                <p class="text-xs text-black/50 mt-1">Notes & comptes rendus</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="lg:col-span-4 bg-white border border-black/10 shadow-soft p-6">
+                        <p class="text-xs font-bold uppercase tracking-widest text-black/50">Accès rapide</p>
+                        <h3 class="text-xl font-extrabold mt-2">Suivi des opérations</h3>
+                        <div class="mt-4 space-y-3">
+                            <a href="#" class="block border border-black/10 p-4 hover:bg-black/5 transition">
+                                <p class="text-[10px] uppercase tracking-widest font-bold text-green-700">Carte</p>
+                                <p class="font-bold">Voir la carte des zones</p>
+                                <p class="text-sm text-black/60">Secteurs, incidents, points de contact</p>
+                            </a>
+                            <a href="#" class="block border border-black/10 p-4 hover:bg-black/5 transition">
+                                <p class="text-[10px] uppercase tracking-widest font-bold text-rdcBlue">Archives</p>
+                                <p class="font-bold">Rapports précédents</p>
+                                <p class="text-sm text-black/60">Classement par date & région</p>
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Mise en avant (plus récent) -->
+                <article class="bg-ink text-white p-8 md:p-10 relative overflow-hidden shadow-soft mb-10">
+                    <div class="absolute -right-16 -bottom-16 w-72 h-72 bg-green-700/25 rounded-full blur-2xl"></div>
+                    <div class="relative z-10">
+                        <span class="inline-block border border-white/30 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">
+                            Plus récent • Terrain
+                        </span>
+                        <h3 class="text-2xl md:text-3xl font-extrabold mb-3 leading-tight">
+                            Mission d’inspection : 32ème Région Militaire (Ituri)
+                        </h3>
+                        <p class="text-white/70 mb-6 max-w-3xl line-clamp-6">
+                            Visite de commandement pour évaluer les dispositifs de protection des populations civiles,
+                            renforcer la discipline opérationnelle et accélérer la remontée d’informations.
+                            Dossier : objectifs, unités, chronologie, photos et synthèse.
+                        </p>
+
+                        <div class="grid sm:grid-cols-3 gap-4 mb-6">
+                            <div class="border-l-4 border-rdcGold pl-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Zone</p>
+                                <p class="text-sm text-white/80 mt-1">Ituri • Secteurs prioritaires</p>
+                            </div>
+                            <div class="border-l-4 border-white/20 pl-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Focus</p>
+                                <p class="text-sm text-white/80 mt-1">Sécurité intérieure • Coordination</p>
+                            </div>
+                            <div class="border-l-4 border-white/20 pl-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Date</p>
+                                <p class="text-sm text-white/80 mt-1">02 Déc 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4">
+                            <button class="bg-white text-ink px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-cream transition">
+                                Lire le rapport
+                            </button>
+                            <button class="flex items-center gap-2 text-sm font-semibold hover:text-rdcGold transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
+                                </svg>
+                                Voir chronologie
+                            </button>
+                            <a href="#" class="text-sm font-bold underline decoration-2 underline-offset-4 text-rdcGold">
+                                Voir dossier média →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Grille (au moins 4) -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 1 -->
+                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
+                        <div class="relative h-44 overflow-hidden">
+                            <img src="{{ asset('assets/kalemie-soda.jpg') }}"
+                                alt="Opération"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                Sécurité
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">02 Déc 2025 • Réf: OPS/ITURI/1202</p>
+                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-green-700 transition">Inspection de la 32ème Région</h3>
+                            <p class="text-sm text-black/70 line-clamp-3">Évaluation des dispositifs et coordination des unités sur le terrain.</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Rapport</span>
+                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 2 -->
+                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
+                        <div class="relative h-44 overflow-hidden">
+                            <img src="{{ asset('assets/garderep.jpg') }}"
+                                alt="Génie Militaire"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                Génie
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">28 Nov 2025 • Réf: OPS/GENIE/1128</p>
+                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition">Réhabilitation Kananga–Kalamba</h3>
+                            <p class="text-sm text-black/70 line-clamp-3">Désenclavement accéléré et appui logistique via le corps du Génie.</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Terrain</span>
+                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 3 -->
+                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
+                        <div class="relative h-44 overflow-hidden">
+                            <img src="{{ asset('assets/histo.jpeg') }}"
+                                alt="Assistance"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                Assistance
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">21 Nov 2025 • Réf: OPS/CRISE/1121</p>
+                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition">Appui civilo-militaire</h3>
+                            <p class="text-sm text-black/70 line-clamp-3">Logistique d’urgence et coordination avec les acteurs humanitaires.</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Dossier</span>
+                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4 -->
+                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
+                        <div class="relative h-44 overflow-hidden">
+                            <img src="{{ asset('assets/bcc_kin.jpg') }}"
+                                alt="Formation terrain"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                Instruction
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">09 Nov 2025 • Réf: OPS/FORM/1109</p>
+                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition">Instruction & coordination</h3>
+                            <p class="text-sm text-black/70 line-clamp-3">Exercices, procédures communes et évaluation post-action.</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Rapport</span>
+                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3 : DISCOURS  -->
         <section id="section-discours" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
-            <div class="max-w-4xl mb-8">
-                <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
-                    <span class="w-2 h-8 bg-indigo-900 block"></span>
-                    Allocutions & Conférences
-                </h2>
-                <p class="mt-2 text-black/70 ml-5">
-                    Prises de parole officielles du Ministre Délégué.
-                </p>
+
+            <!-- Header amélioré -->
+            <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
+                <div class="lg:col-span-8 flex flex-col h-full">
+                    <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
+                        <span class="w-2 h-10 bg-indigo-900 block"></span>
+                        Discours : Allocutions & Conférences
+                    </h2>
+                    <p class="mt-3 text-black/70 text-lg leading-relaxed">
+                        Prises de parole officielles : discours, conférences, points de presse et interviews.
+                        Chaque entrée peut inclure transcription, vidéo, photos et documents associés.
+                    </p>
+
+                    <div class="mt-auto grid sm:grid-cols-3 gap-4">
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Discours (année)</p>
+                            <p class="text-3xl font-extrabold mt-2">34</p>
+                            <p class="text-xs text-black/50 mt-1">Transcriptions</p>
+                        </div>
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Vidéos</p>
+                            <p class="text-3xl font-extrabold mt-2">12</p>
+                            <p class="text-xs text-black/50 mt-1">Conférences & cérémonies</p>
+                        </div>
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Interviews</p>
+                            <p class="text-3xl font-extrabold mt-2">9</p>
+                            <p class="text-xs text-black/50 mt-1">Télévision & radio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="lg:col-span-4 bg-white border border-black/10 shadow-soft p-6">
+                    <p class="text-xs font-bold uppercase tracking-widest text-black/50">Accès rapide</p>
+                    <h3 class="text-xl font-extrabold mt-2">Bibliothèque</h3>
+                    <div class="mt-4 space-y-3">
+                        <a href="#" class="block border border-black/10 p-4 hover:bg-black/5 transition">
+                            <p class="text-[10px] uppercase tracking-widest font-bold text-indigo-900">Transcriptions</p>
+                            <p class="font-bold">Télécharger les textes</p>
+                            <p class="text-sm text-black/60">PDF, formats courts, citations</p>
+                        </a>
+                        <a href="#" class="block border border-black/10 p-4 hover:bg-black/5 transition">
+                            <p class="text-[10px] uppercase tracking-widest font-bold text-rdcBlue">Vidéos</p>
+                            <p class="font-bold">Médiathèque</p>
+                            <p class="text-sm text-black/60">Replays & extraits</p>
+                        </a>
+                    </div>
+                </aside>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-8">
@@ -300,12 +558,31 @@
                     </div>
                     <div class="relative z-10">
                         <span
-                            class="inline-block border border-white/30 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">Allocution</span>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">"La modernisation de notre armée
-                            est irréversible."</h3>
-                        <p class="text-white/70 mb-6">Discours de clôture de l'année académique à l'École de
-                            Commandement et d'État-Major.</p>
-                        <div class="flex items-center gap-4">
+                            class="inline-block border border-white/30 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">Allocution
+                            • Mise en avant</span>
+                        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">"La modernisation de notre
+                            armée est irréversible."</h3>
+                        <p class="text-white/70 mb-6 line-clamp-6">
+                            Discours de clôture de l'année académique à l'École de Commandement et d'État-Major.
+                            Dossier associé : synthèse, transcription intégrale, extraits vidéo et galerie photos.
+                        </p>
+
+                        <div class="grid sm:grid-cols-3 gap-4 mb-6">
+                            <div class="border-l-4 border-rdcGold pl-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Contexte</p>
+                                <p class="text-sm text-white/80 mt-1">École d’État-Major</p>
+                            </div>
+                            <div class="border-l-4 border-white/20 pl-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Formats</p>
+                                <p class="text-sm text-white/80 mt-1">Texte • Vidéo • Photos</p>
+                            </div>
+                            <div class="border-l-4 border-white/20 pl-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Date</p>
+                                <p class="text-sm text-white/80 mt-1">Déc 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4">
                             <button
                                 class="bg-white text-ink px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-cream transition">Lire
                                 le texte</button>
@@ -319,45 +596,118 @@
                                 </svg>
                                 Voir la vidéo
                             </button>
+                            <a href="#" class="text-sm font-bold underline decoration-2 underline-offset-4 text-rdcGold">
+                                Voir dossier média →
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Liste autres discours -->
+                <!-- Liste autres discours (améliorée) -->
                 <div class="flex flex-col gap-4">
-                    <div class="border-l-4 border-indigo-900 pl-6 py-2 hover:bg-gray-50 transition cursor-pointer">
-                        <p class="text-xs text-black/50 font-mono mb-1">Conférence de Presse • 15 Nov 2025</p>
-                        <h4 class="font-bold text-lg text-ink">Point de presse sur la situation sécuritaire à l'Est</h4>
-                        <a href="#" class="text-sm text-rdcBlue font-semibold mt-1 inline-block">Lire la transcription
-                            →</a>
+                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-black/50 font-mono">Conférence de Presse • 15 Nov 2025</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-indigo-50 text-indigo-900 px-2 py-1">Transcription</span>
+                        </div>
+                        <h4 class="font-extrabold text-lg text-ink mt-2">Point de presse sur la situation sécuritaire à l'Est</h4>
+                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
+                            Synthèse, questions-réponses, mesures annoncées et points d’attention.
+                        </p>
+                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
                     </div>
-                    <div class="border-l-4 border-black/10 pl-6 py-2 hover:bg-gray-50 transition cursor-pointer">
-                        <p class="text-xs text-black/50 font-mono mb-1">Interview • 10 Nov 2025</p>
-                        <h4 class="font-bold text-lg text-ink">Entretien exclusif sur la RTNC : le bilan à mi-parcours
-                        </h4>
-                        <a href="#" class="text-sm text-rdcBlue font-semibold mt-1 inline-block">Revoir l'émission →</a>
+
+                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-black/50 font-mono">Interview • 10 Nov 2025</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-blue-50 text-rdcBlue px-2 py-1">Replay</span>
+                        </div>
+                        <h4 class="font-extrabold text-lg text-ink mt-2">Entretien exclusif sur la RTNC : bilan à mi-parcours</h4>
+                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
+                            Modernisation, discipline et priorités : annonces structurantes.
+                        </p>
+                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Revoir →</a>
                     </div>
-                    <div class="border-l-4 border-black/10 pl-6 py-2 hover:bg-gray-50 transition cursor-pointer">
-                        <p class="text-xs text-black/50 font-mono mb-1">Hommage • 02 Nov 2025</p>
-                        <h4 class="font-bold text-lg text-ink">Oraison funèbre du Général Major M.K.</h4>
-                        <a href="#" class="text-sm text-rdcBlue font-semibold mt-1 inline-block">Lire le texte →</a>
+
+                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-black/50 font-mono">Hommage • 02 Nov 2025</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-rdcGold/20 text-ink px-2 py-1">Texte</span>
+                        </div>
+                        <h4 class="font-extrabold text-lg text-ink mt-2">Oraison funèbre du Général Major M.K.</h4>
+                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
+                            Discours officiel, biographie, décorations et galerie cérémonielle.
+                        </p>
+                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
+                    </div>
+
+                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-black/50 font-mono">Allocution • 20 Oct 2025</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-ink/5 text-ink px-2 py-1">Extraits</span>
+                        </div>
+                        <h4 class="font-extrabold text-lg text-ink mt-2">Message à la Nation : discipline & cohésion</h4>
+                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
+                            Extraits officiels, points clés et éléments de langage.
+                        </p>
+                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- 4. SECTION ANNONCES -->
+        <!-- SECTION 4 : ANNONCES -->
         <section id="section-annonces" class="content-section bg-cream2 border-y border-black/10">
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
-                <div class="max-w-4xl mb-8">
-                    <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
-                        <span class="w-2 h-8 bg-rdcGold block"></span>
-                        Annonces Officielles
-                    </h2>
-                    <p class="mt-2 text-black/70 ml-5">
-                        Publications légales, arrêtés ministériels et avis de recrutement.
-                    </p>
+
+                <!-- Header amélioré -->
+            <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
+                <div class="lg:col-span-8 flex flex-col h-full">
+                        <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
+                            <span class="w-2 h-10 bg-rdcGold block"></span>
+                            Annonces Officielles
+                        </h2>
+                        <p class="mt-3 text-black/70 text-lg leading-relaxed">
+                            Publications légales, arrêtés ministériels, avis, appels à candidatures et recrutements.
+                            Backend prévu : filtres, références, téléchargement, statut et archives.
+                        </p>
+
+                        <div class="mt-auto grid sm:grid-cols-3 gap-4">
+                            <div class="bg-white border border-black/10 shadow-soft p-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Annonces actives</p>
+                                <p class="text-3xl font-extrabold mt-2">5</p>
+                                <p class="text-xs text-black/50 mt-1">À déposer / postuler</p>
+                            </div>
+                            <div class="bg-white border border-black/10 shadow-soft p-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Arrêtés</p>
+                                <p class="text-3xl font-extrabold mt-2">12</p>
+                                <p class="text-xs text-black/50 mt-1">2025</p>
+                            </div>
+                            <div class="bg-white border border-black/10 shadow-soft p-4">
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Téléchargements</p>
+                                <p class="text-3xl font-extrabold mt-2">9k</p>
+                                <p class="text-xs text-black/50 mt-1">Documents PDF</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="lg:col-span-4 bg-white border border-black/10 shadow-soft p-6">
+                        <p class="text-xs font-bold uppercase tracking-widest text-black/50">Raccourcis</p>
+                        <h3 class="text-xl font-extrabold mt-2">Portail documents</h3>
+                        <div class="mt-4 space-y-3">
+                            <a href="#" class="block border border-black/10 p-4 hover:bg-black/5 transition">
+                                <p class="text-[10px] uppercase tracking-widest font-bold text-rdcRed">Important</p>
+                                <p class="font-bold">Derniers arrêtés</p>
+                                <p class="text-sm text-black/60">Références, dates, PDF</p>
+                            </a>
+                            <a href="#" class="block border border-black/10 p-4 hover:bg-black/5 transition">
+                                <p class="text-[10px] uppercase tracking-widest font-bold text-rdcBlue">Recrutement</p>
+                                <p class="font-bold">Appels à candidatures</p>
+                                <p class="text-sm text-black/60">Conditions, formulaires</p>
+                            </a>
+                        </div>
+                    </aside>
                 </div>
 
                 <div class="flex flex-col gap-4">
@@ -378,12 +728,16 @@
                                     class="inline-block bg-rdcRed/10 text-rdcRed text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Important</span>
                                 <span class="text-xs text-black/50 font-mono">Réf: MINDEF/CAB/0042/25</span>
                             </div>
-                            <h3 class="font-bold text-lg leading-tight">Arrêté ministériel portant nomination des
+                            <h3 class="font-extrabold text-lg leading-tight">Arrêté ministériel portant nomination des
                                 Directeurs Régionaux</h3>
-                            <p class="text-sm text-black/70 mt-1">
+                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
                                 Publication de la liste officielle des nouveaux directeurs pour les régions militaires
                                 Est et Centre. Prise de fonction immédiate.
                             </p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">PDF</span>
+                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">Annexe</span>
+                            </div>
                             <p class="text-xs text-black/50 mt-2">Publié le 24 Nov 2025</p>
                         </div>
                         <a href="#"
@@ -408,12 +762,16 @@
                                     class="inline-block bg-black/5 text-black/70 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Recrutement</span>
                                 <span class="text-xs text-black/50 font-mono">Réf: REC/SERV/2026-A</span>
                             </div>
-                            <h3 class="font-bold text-lg leading-tight">Ouverture du concours d'entrée 2026 - École du
+                            <h3 class="font-extrabold text-lg leading-tight">Ouverture du concours d'entrée 2026 - École du
                                 Génie</h3>
-                            <p class="text-sm text-black/70 mt-1">
+                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
                                 Avis de recrutement pour les ingénieurs et techniciens. Les dossiers sont à déposer
                                 avant le 15 Janvier 2026.
                             </p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">Conditions</span>
+                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">Formulaire</span>
+                            </div>
                             <p class="text-xs text-black/50 mt-2">Publié le 10 Nov 2025</p>
                         </div>
                         <a href="#"
@@ -421,29 +779,119 @@
                             Voir les conditions
                         </a>
                     </div>
+
+                    <!-- 3e élément pour “au moins 4” -->
+                    <div
+                        class="bg-white border border-black/10 p-5 md:p-6 shadow-soft hover:shadow-lg transition-all flex flex-col md:flex-row gap-5 items-start md:items-center">
+                        <div class="flex-shrink-0 bg-ink/5 text-ink w-12 h-12 flex items-center justify-center rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 6v6h4m6 0a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span
+                                    class="inline-block bg-ink/10 text-ink text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Avis</span>
+                                <span class="text-xs text-black/50 font-mono">Réf: AVIS/PROC/2025-11</span>
+                            </div>
+                            <h3 class="font-extrabold text-lg leading-tight">Avis : calendrier de dépôt des dossiers administratifs</h3>
+                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
+                                Mise à jour des délais, guichets et procédures pour éviter les retards et améliorer la traçabilité.
+                            </p>
+                            <p class="text-xs text-black/50 mt-2">Publié le 05 Nov 2025</p>
+                        </div>
+                        <a href="#"
+                            class="mt-2 md:mt-0 px-4 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition whitespace-nowrap">
+                            Consulter
+                        </a>
+                    </div>
+
+                    <!-- 4e élément -->
+                    <div
+                        class="bg-white border border-black/10 p-5 md:p-6 shadow-soft hover:shadow-lg transition-all flex flex-col md:flex-row gap-5 items-start md:items-center">
+                        <div class="flex-shrink-0 bg-rdcRed/10 text-rdcRed w-12 h-12 flex items-center justify-center rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 6h.008v.008H12v-.008Z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span
+                                    class="inline-block bg-rdcRed/10 text-rdcRed text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Important</span>
+                                <span class="text-xs text-black/50 font-mono">Réf: URG/INFO/2025-10</span>
+                            </div>
+                            <h3 class="font-extrabold text-lg leading-tight">Note importante : consignes de communication officielle</h3>
+                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
+                                Rappel des canaux, validation des communiqués et règles de diffusion des informations sensibles.
+                            </p>
+                            <p class="text-xs text-black/50 mt-2">Publié le 28 Oct 2025</p>
+                        </div>
+                        <a href="#"
+                            class="mt-2 md:mt-0 px-4 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition whitespace-nowrap">
+                            Lire
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- 5. SECTION DECISIONS -->
+        <!-- SECTION 5 : DECISIONS -->
         <section id="section-decisions" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
-            <div class="max-w-4xl mb-8">
-                <h2 class="text-2xl font-extrabold uppercase tracking-wide flex items-center gap-3">
-                    <span class="w-2 h-8 bg-ink block"></span>
-                    Décisions & Notes
-                </h2>
-                <p class="mt-2 text-black/70 ml-5">
-                    Actes administratifs, décisions ministérielles et notes circulaires.
-                </p>
+            <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
+                <div class="lg:col-span-8 flex flex-col h-full">
+                    <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
+                        <span class="w-2 h-10 bg-ink block"></span>
+                        Décisions & Notes
+                    </h2>
+                    <p class="mt-3 text-black/70 text-lg leading-relaxed">
+                        Actes administratifs, décisions ministérielles et notes circulaires.
+                        Backend prévu : références, statut, versions, téléchargements et recherche plein texte.
+                    </p>
+
+                    <div class="mt-auto grid sm:grid-cols-3 gap-4">
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Décisions</p>
+                            <p class="text-3xl font-extrabold mt-2">41</p>
+                            <p class="text-xs text-black/50 mt-1">2025</p>
+                        </div>
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Notes</p>
+                            <p class="text-3xl font-extrabold mt-2">73</p>
+                            <p class="text-xs text-black/50 mt-1">Circulaires & service</p>
+                        </div>
+                        <div class="bg-white border border-black/10 shadow-soft p-4">
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Tél. (mois)</p>
+                            <p class="text-3xl font-extrabold mt-2">2 104</p>
+                            <p class="text-xs text-black/50 mt-1">PDF & annexes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="lg:col-span-4 bg-white border border-black/10 shadow-soft p-6">
+                    <p class="text-xs font-bold uppercase tracking-widest text-black/50">Bonnes pratiques</p>
+                    <h3 class="text-xl font-extrabold mt-2">Traçabilité</h3>
+                    <ul class="mt-4 space-y-2 text-sm text-black/70">
+                        <li>• Réf unique + date + version</li>
+                        <li>• Historique des modifications</li>
+                        <li>• Statut (brouillon / signé / archivé)</li>
+                        <li>• Téléchargements & consultations</li>
+                    </ul>
+                    <button class="mt-5 w-full px-4 py-2 bg-ink text-white font-bold uppercase tracking-wide text-sm hover:bg-ink/90 transition">
+                        Ouvrir l’archive
+                    </button>
+                </aside>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <div
-                    class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
+                <div class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
                     <div class="flex items-start justify-between mb-4">
-                        <div
-                            class="inline-flex items-center px-2 py-1 bg-ink text-white text-[10px] font-bold uppercase tracking-widest">
+                        <div class="inline-flex items-center px-2 py-1 bg-ink text-white text-[10px] font-bold uppercase tracking-widest">
                             Décision
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -453,26 +901,22 @@
                                 d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                         </svg>
                     </div>
-                    <h3 class="font-bold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
+                    <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
                         Décision N°005/MDDN/2025
                     </h3>
-                    <p class="text-sm text-black/70 line-clamp-2">
-                        Portant création d'une commission ad hoc pour l'évaluation des infrastructures hospitalières
-                        militaires en zone Est.
+                    <p class="text-sm text-black/70 line-clamp-3">
+                        Création d'une commission ad hoc pour l'évaluation des infrastructures hospitalières militaires en zone Est.
                     </p>
-                    <div
-                        class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
-                        <span>26 Nov 2025</span>
+                    <div class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
+                        <span class="font-mono">26 Nov 2025</span>
                         <span class="uppercase tracking-wide font-semibold text-black/70">PDF • 1.2 MB</span>
                     </div>
                     <a href="#" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
                 </div>
 
-                <div
-                    class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
+                <div class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
                     <div class="flex items-start justify-between mb-4">
-                        <div
-                            class="inline-flex items-center px-2 py-1 bg-black/5 text-black/80 text-[10px] font-bold uppercase tracking-widest">
+                        <div class="inline-flex items-center px-2 py-1 bg-black/5 text-black/80 text-[10px] font-bold uppercase tracking-widest">
                             Note circulaire
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -482,17 +926,41 @@
                                 d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                         </svg>
                     </div>
-                    <h3 class="font-bold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
+                    <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
                         Note de service - Logistique
                     </h3>
-                    <p class="text-sm text-black/70 line-clamp-2">
-                        Procédure actualisée concernant l'approvisionnement en carburant des unités déployées.
-                        Application immédiate.
+                    <p class="text-sm text-black/70 line-clamp-3">
+                        Procédure actualisée concernant l'approvisionnement en carburant des unités déployées. Application immédiate.
                     </p>
-                    <div
-                        class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
-                        <span>22 Nov 2025</span>
+                    <div class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
+                        <span class="font-mono">22 Nov 2025</span>
                         <span class="uppercase tracking-wide font-semibold text-black/70">PDF • 850 KB</span>
+                    </div>
+                    <a href="#" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
+                </div>
+
+                <!-- 3e -->
+                <div class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="inline-flex items-center px-2 py-1 bg-ink/10 text-ink text-[10px] font-bold uppercase tracking-widest">
+                            Note interne
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5 text-black/30 group-hover:text-rdcBlue transition-colors">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
+                        Note interne – Conformité & diffusion
+                    </h3>
+                    <p class="text-sm text-black/70 line-clamp-3">
+                        Règles de validation des documents, archivage, et diffusion des informations sensibles.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
+                        <span class="font-mono">14 Nov 2025</span>
+                        <span class="uppercase tracking-wide font-semibold text-black/70">PDF • 420 KB</span>
                     </div>
                     <a href="#" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
                 </div>
@@ -504,105 +972,7 @@
 
 @include('partials.footer')
 
-    <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-[9997] opacity-0 translate-y-3 pointer-events-none
-           bg-rdcBlue text-white w-12 h-12 shadow-soft
-           flex items-center justify-center text-xl transition duration-300 hover:bg-rdcBlue/90"
-        aria-label="Retour en haut">
-        ↑
-    </button>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-
-        // Menu Mobile Logic
-        const burgerBtn = document.getElementById("burgerBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        const burgerLines = burgerBtn.querySelectorAll(".burger-line");
-        let menuOpen = false;
-
-        function toggleMenu() {
-            menuOpen = !menuOpen;
-            if (menuOpen) {
-                burgerLines[0].style.transform = "translateY(8px) rotate(45deg)";
-                burgerLines[1].style.opacity = "0";
-                burgerLines[2].style.transform = "translateY(-8px) rotate(-45deg)";
-                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
-            } else {
-                burgerLines[0].style.transform = "translateY(0) rotate(0)";
-                burgerLines[1].style.opacity = "1";
-                burgerLines[2].style.transform = "translateY(0) rotate(0)";
-                mobileMenu.style.maxHeight = "0px";
-            }
-        }
-
-        burgerBtn.addEventListener("click", toggleMenu);
-
-        // Scroll Logic
-        const progressBar = document.getElementById("progressBar");
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-        function onScroll() {
-            const scrollY = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-            progressBar.style.width = progress + "%";
-
-            if (scrollY > 300) {
-                scrollTopBtn.classList.remove("opacity-0", "translate-y-3", "pointer-events-none");
-                scrollTopBtn.classList.add("opacity-100", "translate-y-0");
-            } else {
-                scrollTopBtn.classList.add("opacity-0", "translate-y-3", "pointer-events-none");
-                scrollTopBtn.classList.remove("opacity-100", "translate-y-0");
-            }
-        }
-        window.addEventListener("scroll", onScroll);
-        scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-        // Filter Logic - Mise à jour pour les nouvelles catégories
-        function filterContent(category) {
-            const sections = ['actus', 'annonces', 'decisions', 'discours', 'operations'];
-
-            // Update buttons style
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active', 'bg-rdcBlue', 'text-white', 'border-rdcBlue');
-                btn.classList.add('bg-white', 'text-black/70');
-            });
-
-            const activeBtn = document.getElementById(`btn-${category}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-black/70');
-                activeBtn.classList.add('active', 'bg-rdcBlue', 'text-white', 'border-rdcBlue');
-            }
-
-            // Show/Hide sections
-            if (category === 'all') {
-                sections.forEach(s => {
-                    const el = document.getElementById(`section-${s}`);
-                    if (el) {
-                        el.classList.remove('hidden');
-                        // Animation de réapparition douce
-                        el.style.opacity = 0;
-                        setTimeout(() => el.style.opacity = 1, 50);
-                    }
-                });
-            } else {
-                sections.forEach(s => {
-                    const el = document.getElementById(`section-${s}`);
-                    if (el) {
-                        if (s === category) {
-                            el.classList.remove('hidden');
-                            el.style.opacity = 0;
-                            setTimeout(() => el.style.opacity = 1, 50);
-                        } else {
-                            el.classList.add('hidden');
-                        }
-                    }
-                });
-            }
-            // Scroll to top of content slightly if needed, or just let user browse
-            if (window.scrollY > 400) window.scrollTo({ top: 400, behavior: 'smooth' });
-        }
-    </script>
 </body>
 
 </html>

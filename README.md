@@ -1,86 +1,138 @@
+
+
 # Projet Defense RDC
 
-Ce document décrit les étapes pour cloner, installer et lancer le projet Defense RDC en utilisant l'environnement de développement Docker fourni par Laravel Sail.
+Ce document décrit **la procédure correcte et fiable** pour cloner, installer et lancer le projet **Defense RDC** en local, en utilisant **Laravel Sail (Docker)**.
 
-## Prérequis
+> ⚠️ **Important**
+> Ce projet utilise **PHP 8.4**, **Laravel 12** et **MySQL via Docker**.
+> Une installation partielle ou dans le mauvais ordre **ne fonctionnera pas**.
 
-Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votre machine :
+---
 
-- Git
-- Docker & Docker Compose
-- Composer
-- Node.js & npm
+## 🧩 Prérequis
 
-## Installation et Lancement
+Avant de commencer, assurez-vous d’avoir installé **uniquement** :
 
-Suivez ces étapes pour mettre en place et démarrer le projet.
+* Git
+* Docker + Docker Compose (Docker Desktop sous Windows / macOS)
+* **Aucun PHP local requis**
+* **Aucun Composer local requis**
+* **Node.js requis uniquement pour le front (Vite)**
 
-**1. Clonage du projet**
+---
 
-Clonez le dépôt Git du projet sur votre machine locale et naviguez dans le nouveau répertoire :
+## 🚀 Installation complète (ordre strict)
+
+### 1️⃣ Clonage du projet
 
 ```bash
 git clone https://github.com/votre-utilisateur/defense-rdc.git
 cd Defense-rdc
 ```
-*(Remplacez l'URL par l'URL réelle du dépôt si différente.)*
 
-**2. Configuration de l'environnement**
+---
 
-Copiez le fichier d'environnement d'exemple. La configuration par défaut est conçue pour fonctionner avec Laravel Sail.
+### 2️⃣ Création du fichier `.env` (OBLIGATOIRE)
 
 ```bash
 cp .env.example .env
 ```
 
-**3. Installation des dépendances PHP**
+⚠️ **Ne jamais réutiliser un ancien `.env`**
+Le fichier `.env` est ignoré par Git et peut contenir d’anciennes valeurs incompatibles.
 
-Utilisez une image Docker temporaire de Composer pour installer les dépendances PHP sans avoir besoin de PHP ou Composer sur votre machine locale. Cela garantit que les dépendances correspondent à l'environnement du conteneur.
+---
+
+### 3️⃣ Configuration du `.env` (local Docker)
+
+Ouvrez le fichier `.env` et vérifiez **impérativement** les valeurs suivantes :
+
+```env
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=defense_rdc
+DB_USERNAME=sail
+DB_PASSWORD=password
+
+# IMPORTANT : forcer MySQL en TCP (Docker)
+DB_SOCKET=null
+```
+
+👉 **Cette ligne est indispensable** pour éviter les erreurs MySQL via socket :
+
+```env
+DB_SOCKET=null
+```
+
+---
+
+### 4️⃣ Installation des dépendances PHP (bootstrap initial)
+
+> ⚠️ Cette étape est nécessaire **uniquement si le dossier `vendor/` n’existe pas**
+> Elle installe Laravel Sail et rend la commande `./vendor/bin/sail` disponible.
 
 ```bash
 docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd)":/var/www/html \
-    -w /var/www/html \
-    laravelsail/php83-composer:latest \
-    composer install --ignore-platform-reqs
+  -u "$(id -u):$(id -g)" \
+  -e COMPOSER_HOME=/var/www/html/.composer \
+  -v "$(pwd)":/var/www/html \
+  -w /var/www/html \
+  laravelsail/php84-composer:latest \
+  composer install
 ```
 
-**4. Démarrage des conteneurs Docker**
+---
 
-Lancez les conteneurs de l'application avec le script Sail. L'option `-d` démarre les conteneurs en arrière-plan (mode détaché).
+### 5️⃣ Démarrage de l’environnement Docker (Sail)
 
 ```bash
 ./vendor/bin/sail up -d
 ```
 
-**5. Génération de la clé d'application**
+⏳ **Attendre 10–20 secondes** après cette commande
+(MySQL met un peu de temps à être prêt lors du premier démarrage)
 
-Une fois les conteneurs lancés, générez la clé de sécurité unique pour l'application Laravel.
+---
+
+### 6️⃣ Génération de la clé Laravel
 
 ```bash
 ./vendor/bin/sail artisan key:generate
 ```
 
-**6. Installation des dépendances JavaScript**
+---
 
-Installez les dépendances front-end définies dans `package.json`.
+### 7️⃣ Installation des dépendances JavaScript
 
 ```bash
 ./vendor/bin/sail npm install
 ```
 
-**7. Exécution des migrations de la base de données**
+---
 
-Créez les tables dans la base de données en exécutant les migrations Laravel.
+### 8️⃣ Création de la base de données (migrations)
 
 ```bash
 ./vendor/bin/sail artisan migrate
 ```
 
-**8. Compilation des assets (pour le développement)**
+👉 Si cette commande échoue après un changement de configuration DB :
 
-Lancez le serveur de développement Vite pour la compilation des assets CSS et JS à la volée.
+```bash
+./vendor/bin/sail down -v
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan migrate
+```
+
+---
+
+### 9️⃣ Lancement du serveur front (Vite)
 
 ```bash
 ./vendor/bin/sail npm run dev
@@ -88,16 +140,85 @@ Lancez le serveur de développement Vite pour la compilation des assets CSS et J
 
 ---
 
-## Accès à l'application
+## 🌐 Accès à l’application
 
-Une fois toutes les étapes terminées et les conteneurs en cours d'exécution, votre application devrait être accessible à l'adresse suivante :
+Une fois tous les conteneurs démarrés :
 
-[**http://localhost**](http://localhost)
+👉 **[http://localhost](http://localhost)**
 
-## Gérer les conteneurs
+---
 
-Pour arrêter les conteneurs Docker de l'application :
+## 🧠 Commandes utiles
+
+### Vérifier PHP
+
+```bash
+./vendor/bin/sail php -v
+```
+
+### Vérifier Laravel
+
+```bash
+./vendor/bin/sail artisan --version
+```
+
+### Accéder à MySQL
+
+```bash
+./vendor/bin/sail mysql -h mysql -u sail -ppassword
+```
+
+---
+
+## 🛑 Arrêter l’environnement
 
 ```bash
 ./vendor/bin/sail down
 ```
+
+⚠️ Pour **réinitialiser complètement la base de données locale** :
+
+```bash
+./vendor/bin/sail down -v
+```
+
+---
+
+## 🧨 Problèmes fréquents (IMPORTANT)
+
+### ❌ `Connection refused` MySQL
+
+➡️ Vérifier que :
+
+* `DB_HOST=mysql`
+* `DB_SOCKET=null`
+* MySQL a eu le temps de démarrer (attendre 10–20 s)
+
+---
+
+### ❌ `Access denied for user 'sail'`
+
+➡️ La base locale est incohérente :
+
+```bash
+./vendor/bin/sail down -v
+./vendor/bin/sail up -d
+```
+
+---
+
+### ❌ `./vendor/bin/sail: No such file`
+
+➡️ Les dépendances PHP ne sont pas installées
+➡️ Refaire l’étape **4**
+
+---
+
+## ✅ En résumé
+
+* ✔️ PHP **8.4** obligatoire
+* ✔️ Laravel Sail uniquement (pas de PHP local)
+* ✔️ `.env` propre et local
+* ✔️ `DB_SOCKET=null` indispensable
+* ✔️ Respect strict de l’ordre des étapes
+
