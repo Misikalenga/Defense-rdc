@@ -8,7 +8,7 @@
     </div>
 
     @if($actualite->image)
-        <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}" class="rounded-lg w-full h-64 object-cover mb-4">
+        <img src="{{ (Str::startsWith($actualite->image, ['http://','https://']) ? $actualite->image : asset('storage/' . $actualite->image)) }}" alt="{{ $actualite->title }}" class="rounded-lg w-full h-64 object-cover mb-4">
     @endif
 
     <div class="text-sm text-black/70 space-y-2">

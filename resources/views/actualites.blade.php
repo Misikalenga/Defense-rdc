@@ -192,7 +192,7 @@
                 <article class="bg-white border border-black/10 shadow-soft overflow-hidden mb-10">
                     <div class="grid lg:grid-cols-12">
                         <div class="lg:col-span-5 relative h-64 lg:h-full overflow-hidden">
-                            <img src="{{ asset('storage/' . $featured->image) }}" alt="{{ $featured->title }}"
+                            <img src="{{ (\Illuminate\Support\Str::startsWith($featured->image, ['http://','https://']) ? $featured->image : asset('storage/' . $featured->image)) }}" alt="{{ $featured->title }}"
                                 class="w-full h-full object-cover object-center hover:scale-105 transition duration-500">
                             <div
                                 class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
@@ -253,7 +253,7 @@
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ asset('storage/' . $actualite->image) }}" alt="{{ $actualite->title }}"
+                        <img src="{{ (\Illuminate\Support\Str::startsWith($actualite->image, ['http://','https://']) ? $actualite->image : asset('storage/' . $actualite->image)) }}" alt="{{ $actualite->title }}"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
                         <div
                             class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">

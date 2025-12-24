@@ -45,7 +45,7 @@
             <label for="image" class="text-sm font-medium text-black/70">Image de couverture</label>
             <input type="file" name="image" id="image" class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-rdcBlue hover:file:bg-blue-100"/>
             @if($actualite->image)
-                <img src="{{ asset('storage/' . $actualite->image) }}" class="mt-2 rounded-md h-24">
+                <img src="{{ (\Illuminate\Support\Str::startsWith($actualite->image, ['http://','https://']) ? $actualite->image : asset('storage/' . $actualite->image)) }}" class="mt-2 rounded-md h-24">
             @endif
         </div>
 
