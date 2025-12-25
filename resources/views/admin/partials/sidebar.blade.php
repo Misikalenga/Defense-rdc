@@ -14,7 +14,7 @@
         <nav class="mt-6 px-2 space-y-1">
 
             <!-- Tableau de bord -->
-            <a href="#"
+            <a href="/admin"
                class="sidebar-link {{ $current === 'admin.dashboard' ? 'active' : '' }} flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-r hover:bg-white/5 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5 opacity-70">
@@ -29,14 +29,27 @@
             </div>
 
             <!-- Actualités -->
-            <a href="#"
-               class="sidebar-link {{ str_contains($current, 'admin.posts') ? 'active' : '' }} flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-r hover:bg-white/5 transition">
+            <a href="/admin/actualites"
+               class="sidebar-link {{ str_contains($current, 'admin.actualites') ? 'active' : '' }} flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-r hover:bg-white/5 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5 opacity-70">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
                 </svg>
                 Actualités & Articles
+            </a>
+
+            <!-- Actualités -->
+            <a href="/admin/categories"
+               class="sidebar-link {{ str_contains($current, 'admin.categories') ? 'active' : '' }} flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-r hover:bg-white/5 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-tree mr-3" aria-hidden="true">
+                    <path d="M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"></path>
+                    <path d="M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.9a1 1 0 0 1-.88-.55l-.42-.85a1 1 0 0 0-.92-.6H13a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"></path>
+                    <path d="M3 5a2 2 0 0 0 2 2h3"></path>
+                    <path d="M3 3v13a2 2 0 0 0 2 2h3"></path>
+                </svg>
+
+                Catégories
             </a>
 
             <!-- PDF -->
