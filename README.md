@@ -1,5 +1,3 @@
-
-
 # Projet Defense RDC
 
 Ce document décrit **la procédure correcte et fiable** pour cloner, installer et lancer le projet **Defense RDC** en local, en utilisant **Laravel Sail (Docker)**.
@@ -29,7 +27,7 @@ Avant de commencer, assurez-vous d’avoir installé **uniquement** :
 ```bash
 git clone https://github.com/votre-utilisateur/defense-rdc.git
 cd Defense-rdc
-```
+````
 
 ---
 
@@ -132,7 +130,20 @@ docker run --rm \
 
 ---
 
-### 9️⃣ Lancement du serveur front (Vite)
+### 9️⃣ Peuplement de la base de données (SEEDS)
+
+> Cette étape est **obligatoire** pour créer l’utilisateur administrateur
+> et les données de base nécessaires à l’application.
+
+```bash
+./vendor/bin/sail artisan db:seed
+```
+
+👉 Par défaut, un utilisateur admin est créé (voir `DatabaseSeeder.php`).
+
+---
+
+### 🔟 Lancement du serveur front (Vite)
 
 ```bash
 ./vendor/bin/sail npm run dev
@@ -144,7 +155,18 @@ docker run --rm \
 
 Une fois tous les conteneurs démarrés :
 
+### Application Laravel
+
 👉 **[http://localhost](http://localhost)**
+
+### phpMyAdmin (base de données)
+
+👉 **[http://localhost:8081](http://localhost:8081)**
+
+* Serveur : `mysql`
+* Utilisateur : `sail`
+* Mot de passe : `password`
+* Base : `defense_rdc`
 
 ---
 
@@ -162,7 +184,7 @@ Une fois tous les conteneurs démarrés :
 ./vendor/bin/sail artisan --version
 ```
 
-### Accéder à MySQL
+### Accéder à MySQL (CLI)
 
 ```bash
 ./vendor/bin/sail mysql -h mysql -u sail -ppassword
@@ -220,5 +242,5 @@ Une fois tous les conteneurs démarrés :
 * ✔️ Laravel Sail uniquement (pas de PHP local)
 * ✔️ `.env` propre et local
 * ✔️ `DB_SOCKET=null` indispensable
+* ✔️ Migrations **et seeds obligatoires**
 * ✔️ Respect strict de l’ordre des étapes
-
