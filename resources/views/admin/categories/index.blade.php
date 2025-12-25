@@ -31,6 +31,9 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4 font-medium text-ink">
                             {{ $categorie->name }}
+                            @if($categorie->parent)
+                                <div class="text-xs text-black/40">Parent: {{ $categorie->parent->name }}</div>
+                            @endif
                         </td>
                         <td class="px-6 py-4 text-black/50">{{ $categorie->slug }}</td>
 

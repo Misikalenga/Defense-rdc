@@ -12,6 +12,16 @@
             <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" value="{{ $categorie->name }}" required>
         </div>
 
+        <div>
+            <label for="parent_id" class="text-sm font-medium text-black/70">Catégorie parente</label>
+            <select name="parent_id" id="parent_id" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm">
+                <option value="">Aucune</option>
+                @foreach($parents as $parent)
+                    <option value="{{ $parent->id }}" {{ (old('parent_id') ?? $categorie->parent_id) == $parent->id ? 'selected' : '' }}>{{ $parent->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="flex justify-end pt-4">
             <button type="submit" class="bg-rdcBlue text-white px-4 py-2 text-sm font-bold uppercase tracking-wide hover:bg-rdcBlue/90 transition rounded">
                 Mettre à jour

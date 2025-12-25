@@ -9,7 +9,7 @@ class CategorieService
 {
     public function getCategories()
     {
-        return Categorie::latest()->paginate(10);
+        return Categorie::with('parent')->orderBy('parent_id')->orderBy('name')->paginate(10);
     }
 
     public function getAllCategories()
@@ -17,17 +17,23 @@ class CategorieService
         return Categorie::all();
     }
 
-
     public function createCategorie(array $data): Categorie
     {
         $data['slug'] = Str::slug($data['name']);
-        return Categorie::create($data);
+        $attributes = ['name' => $data['name'], 'slug' => $data['slug']];
+        if (!empty($data['parent_id'])) {
+            $attributes['parent_id'] = $data['parent_id'];
+        }
+        return Categorie::create($attributes);
     }
 
     public function updateCategorie(Categorie $categorie, array $data): bool
     {
         if (isset($data['name'])) {
             $data['slug'] = Str::slug($data['name']);
+        }
+        if (isset($data['parent_id']) && $data['parent_id'] == $categorie->id) {
+            unset($data['parent_id']);
         }
         return $categorie->update($data);
     }
