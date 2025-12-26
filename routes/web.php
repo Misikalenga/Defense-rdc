@@ -19,6 +19,7 @@ Route::get('/', function () {
 // PAGE ACTUALITÉS (publique)
 // ------------------------
 Route::get('/actualites', [PageController::class, 'actualites'])->name('actualites');
+Route::get('/actualites/{actualite:slug}', [PageController::class, 'show'])->name('actualites.show');
 
 // ------------------------
 // PAGE PROJETS (publique)

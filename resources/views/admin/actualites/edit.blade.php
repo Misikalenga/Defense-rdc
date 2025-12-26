@@ -23,7 +23,8 @@
                 <select name="categorie_id" id="categorie_id" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" required>
                     <option value="">-- Sélectionnez une catégorie --</option>
                     @foreach($categories as $categorie)
-                        <option value="{{ $categorie->id }}" @if(old('categorie_id', $actualite->categorie_id) == $categorie->id) selected @endif>{{ $categorie->name }}</option>
+                        @php $label = $categorie->parent ? $categorie->parent->name . ' > ' . $categorie->name : $categorie->name; @endphp
+                        <option value="{{ $categorie->id }}" @if(old('categorie_id', $actualite->categorie_id) == $categorie->id) selected @endif>{{ $label }}</option>
                     @endforeach
                 </select>
             </div>
