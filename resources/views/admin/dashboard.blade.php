@@ -151,10 +151,35 @@
                     ➕ Nouvel Article / Actualité
                 </a>
 
+                <a href="{{ route('admin.categories.index') }}" class="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-3 rounded-md text-sm font-medium">
+                    🗂️ Gérer les catégories
+                </a>
+
                 <button class="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-3 rounded-md text-sm font-medium">
                     📄 Uploader Document (PDF)
                 </button>
 
+            </div>
+        </div>
+
+        <!-- Categories list -->
+        <div class="bg-white rounded-lg shadow-sm border border-black/5 p-6">
+            <h3 class="font-bold text-base mb-4 text-black/80">Catégories</h3>
+            <div class="space-y-2">
+                @foreach($categories as $cat)
+                    <div class="flex items-center justify-between text-sm">
+                        <div>
+                            <span class="font-medium">{{ $cat->name }}</span>
+                            @if($cat->parent_id)
+                                <span class="text-xs text-black/40"> — enfant de {{ $cat->parent->name ?? 'N/A' }}</span>
+                            @endif
+                        </div>
+                        <div class="text-black/60">{{ $cat->actualites_count }} articles</div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="mt-4">
+                <a href="{{ route('admin.categories.index') }}" class="text-sm text-rdcBlue">Voir toutes les catégories</a>
             </div>
         </div>
 

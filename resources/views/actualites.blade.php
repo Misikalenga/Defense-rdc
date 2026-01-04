@@ -187,8 +187,8 @@
             </div>
 
             <!-- Article “le plus récent” mis en avant (style priorité 2026) -->
-            @if($actualites->count() > 0)
-                @php $featured = $actualites->first(); @endphp
+            @if($groupedActualites['latest_per_category']->count() > 0)
+                @php $featured = $groupedActualites['latest_per_category']->shift(); @endphp
                 <article class="bg-white border border-black/10 shadow-soft overflow-hidden mb-10">
                     <div class="grid lg:grid-cols-12">
                         <div class="lg:col-span-5 relative h-64 lg:h-full overflow-hidden">
@@ -229,7 +229,7 @@
                             </div>
 
                             <div class="mt-6 flex flex-wrap items-center gap-3">
-                                <a href="#"
+                                <a href="{{ route('actualites.show', $featured) }}"
                                     class="bg-rdcBlue text-white px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-rdcBlue/90 transition">
                                     Lire le dossier complet
                                 </a>
@@ -245,11 +245,11 @@
             <!-- Grille de news (4+) -->
             <h3 class="text-xl font-extrabold uppercase tracking-wide flex items-center gap-3 mb-6">
                 <span class="w-2 h-7 bg-rdcBlue block"></span>
-                Dernières publications
+                Dernières publications par catégories
             </h3>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($actualites->skip(1) as $actualite)
+                @forelse($groupedActualites['latest_per_category'] as $actualite)
                 <article
                     class="bg-white overflow-hidden border border-black/10 shadow-soft hover:-translate-y-1 transition group">
                     <div class="relative h-48 w-full overflow-hidden">
@@ -271,12 +271,14 @@
 
                         <div class="mt-4 flex items-center justify-between">
                             <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Article</span>
-                            <a href="#"
+                            <a href="{{ route('actualites.show', $actualite) }}"
                                 class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Lire →</a>
                         </div>
                     </div>
                 </article>
-                @endforeach
+                @empty
+                <p class="col-span-full text-center text-black/60">Aucune actualité récente par catégorie n'est disponible.</p>
+                @endforelse
             </div>
 
             <!-- Bandeau d’archives -->
@@ -301,7 +303,7 @@
 
 
         <!-- SECTION 2 : OPERATIONS -->
-        <section id="section-operations" class="content-section bg-cream2 border-y border-black/10">
+        <section id="section-operations" class="content-section bg-cream2 border-y border-black/10 hidden">
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
 
                 <!-- Header section amélioré -->
@@ -320,17 +322,17 @@
                         <div class="mt-auto grid sm:grid-cols-3 gap-4">
                             <div class="bg-white border border-black/10 shadow-soft p-4">
                                 <p class="text-xs font-bold uppercase tracking-widest text-black/50">Missions actives</p>
-                                <p class="text-3xl font-extrabold mt-2">9</p>
+                                <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['operations']->count() }}</p>
                                 <p class="text-xs text-black/50 mt-1">Suivi hebdomadaire</p>
                             </div>
                             <div class="bg-white border border-black/10 shadow-soft p-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Zones couvertes</p>
-                                <p class="text-3xl font-extrabold mt-2">14</p>
-                                <p class="text-xs text-black/50 mt-1">Régions & secteurs</p>
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Publications</p>
+                                <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['operations']->count() }}</p>
+                                <p class="text-xs text-black/50 mt-1">Toutes les publications</p>
                             </div>
                             <div class="bg-white border border-black/10 shadow-soft p-4">
                                 <p class="text-xs font-bold uppercase tracking-widest text-black/50">Rapports publiés</p>
-                                <p class="text-3xl font-extrabold mt-2">27</p>
+                                <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['operations']->count() }}</p>
                                 <p class="text-xs text-black/50 mt-1">Notes & comptes rendus</p>
                             </div>
                         </div>
@@ -354,148 +356,37 @@
                     </aside>
                 </div>
 
-                <!-- Mise en avant (plus récent) -->
-                <article class="bg-ink text-white p-8 md:p-10 relative overflow-hidden shadow-soft mb-10">
-                    <div class="absolute -right-16 -bottom-16 w-72 h-72 bg-green-700/25 rounded-full blur-2xl"></div>
-                    <div class="relative z-10">
-                        <span class="inline-block border border-white/30 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">
-                            Plus récent • Terrain
-                        </span>
-                        <h3 class="text-2xl md:text-3xl font-extrabold mb-3 leading-tight">
-                            Mission d’inspection : 32ème Région Militaire (Ituri)
-                        </h3>
-                        <p class="text-white/70 mb-6 max-w-3xl line-clamp-6">
-                            Visite de commandement pour évaluer les dispositifs de protection des populations civiles,
-                            renforcer la discipline opérationnelle et accélérer la remontée d’informations.
-                            Dossier : objectifs, unités, chronologie, photos et synthèse.
-                        </p>
-
-                        <div class="grid sm:grid-cols-3 gap-4 mb-6">
-                            <div class="border-l-4 border-rdcGold pl-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Zone</p>
-                                <p class="text-sm text-white/80 mt-1">Ituri • Secteurs prioritaires</p>
-                            </div>
-                            <div class="border-l-4 border-white/20 pl-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Focus</p>
-                                <p class="text-sm text-white/80 mt-1">Sécurité intérieure • Coordination</p>
-                            </div>
-                            <div class="border-l-4 border-white/20 pl-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Date</p>
-                                <p class="text-sm text-white/80 mt-1">02 Déc 2025</p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap items-center gap-4">
-                            <button class="bg-white text-ink px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-cream transition">
-                                Lire le rapport
-                            </button>
-                            <button class="flex items-center gap-2 text-sm font-semibold hover:text-rdcGold transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="1.5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
-                                </svg>
-                                Voir chronologie
-                            </button>
-                            <a href="#" class="text-sm font-bold underline decoration-2 underline-offset-4 text-rdcGold">
-                                Voir dossier média →
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
                 <!-- Grille (au moins 4) -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- 1 -->
+                    @forelse($groupedActualites['operations'] as $actualite)
                     <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
                         <div class="relative h-44 overflow-hidden">
-                            <img src="{{ asset('assets/kalemie-soda.jpg') }}"
-                                alt="Opération"
+                            <img src="{{ (\Illuminate\Support\Str::startsWith($actualite->image, ['http://','https://']) ? $actualite->image : asset('storage/' . $actualite->image)) }}" alt="{{ $actualite->title }}"
                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute top-4 left-4 bg-green-700 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                Sécurité
+                                {{ $actualite->categorie->name ?? 'N/A' }}
                             </div>
                         </div>
                         <div class="p-6">
-                            <p class="text-xs font-mono text-black/50 mb-2">02 Déc 2025 • Réf: OPS/ITURI/1202</p>
-                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-green-700 transition">Inspection de la 32ème Région</h3>
-                            <p class="text-sm text-black/70 line-clamp-3">Évaluation des dispositifs et coordination des unités sur le terrain.</p>
+                            <p class="text-xs font-mono text-black/50 mb-2">{{ $actualite->published_at->format('d M Y') }}</p>
+                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-green-700 transition">{{ $actualite->title }}</h3>
+                            <p class="text-sm text-black/70 line-clamp-3">{{ Str::limit(strip_tags($actualite->content), 100) }}</p>
                             <div class="mt-4 flex items-center justify-between">
                                 <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Rapport</span>
-                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
+                                <a href="{{ route('actualites.show', $actualite) }}" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
                             </div>
                         </div>
                     </article>
-
-                    <!-- 2 -->
-                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
-                        <div class="relative h-44 overflow-hidden">
-                            <img src="{{ asset('assets/garderep.jpg') }}"
-                                alt="Génie Militaire"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                Génie
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xs font-mono text-black/50 mb-2">28 Nov 2025 • Réf: OPS/GENIE/1128</p>
-                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition">Réhabilitation Kananga–Kalamba</h3>
-                            <p class="text-sm text-black/70 line-clamp-3">Désenclavement accéléré et appui logistique via le corps du Génie.</p>
-                            <div class="mt-4 flex items-center justify-between">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Terrain</span>
-                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 3 -->
-                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
-                        <div class="relative h-44 overflow-hidden">
-                            <img src="{{ asset('assets/histo.jpeg') }}"
-                                alt="Assistance"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-4 left-4 bg-rdcGold text-ink text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                Assistance
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xs font-mono text-black/50 mb-2">21 Nov 2025 • Réf: OPS/CRISE/1121</p>
-                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition">Appui civilo-militaire</h3>
-                            <p class="text-sm text-black/70 line-clamp-3">Logistique d’urgence et coordination avec les acteurs humanitaires.</p>
-                            <div class="mt-4 flex items-center justify-between">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Dossier</span>
-                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 4 -->
-                    <article class="bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden group">
-                        <div class="relative h-44 overflow-hidden">
-                            <img src="{{ asset('assets/bcc_kin.jpg') }}"
-                                alt="Formation terrain"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-4 left-4 bg-ink text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                Instruction
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xs font-mono text-black/50 mb-2">09 Nov 2025 • Réf: OPS/FORM/1109</p>
-                            <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition">Instruction & coordination</h3>
-                            <p class="text-sm text-black/70 line-clamp-3">Exercices, procédures communes et évaluation post-action.</p>
-                            <div class="mt-4 flex items-center justify-between">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-black/50">Rapport</span>
-                                <a href="#" class="text-sm font-bold text-rdcBlue underline decoration-2 underline-offset-4">Voir →</a>
-                            </div>
-                        </div>
-                    </article>
+                    @empty
+                    <p class="col-span-full text-center text-black/60">Aucune opération n'est disponible.</p>
+                    @endforelse
                 </div>
 
             </div>
         </section>
 
         <!-- SECTION 3 : DISCOURS  -->
-        <section id="section-discours" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
+        <section id="section-discours" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12 hidden">
 
             <!-- Header amélioré -->
             <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
@@ -512,17 +403,17 @@
                     <div class="mt-auto grid sm:grid-cols-3 gap-4">
                         <div class="bg-white border border-black/10 shadow-soft p-4">
                             <p class="text-xs font-bold uppercase tracking-widest text-black/50">Discours (année)</p>
-                            <p class="text-3xl font-extrabold mt-2">34</p>
+                            <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['discours']->count() }}</p>
                             <p class="text-xs text-black/50 mt-1">Transcriptions</p>
                         </div>
                         <div class="bg-white border border-black/10 shadow-soft p-4">
                             <p class="text-xs font-bold uppercase tracking-widest text-black/50">Vidéos</p>
-                            <p class="text-3xl font-extrabold mt-2">12</p>
+                            <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['discours']->where('type', 'video')->count() }}</p>
                             <p class="text-xs text-black/50 mt-1">Conférences & cérémonies</p>
                         </div>
                         <div class="bg-white border border-black/10 shadow-soft p-4">
                             <p class="text-xs font-bold uppercase tracking-widest text-black/50">Interviews</p>
-                            <p class="text-3xl font-extrabold mt-2">9</p>
+                            <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['discours']->where('type', 'interview')->count() }}</p>
                             <p class="text-xs text-black/50 mt-1">Télévision & radio</p>
                         </div>
                     </div>
@@ -549,116 +440,87 @@
             <div class="grid lg:grid-cols-2 gap-8">
 
                 <!-- Discours Principal -->
-                <div class="bg-ink text-white p-8 md:p-10 relative overflow-hidden shadow-soft">
-                    <div class="absolute top-0 right-0 p-10 opacity-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                            class="w-40 h-40">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                    </div>
-                    <div class="relative z-10">
-                        <span
-                            class="inline-block border border-white/30 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">Allocution
-                            • Mise en avant</span>
-                        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">"La modernisation de notre
-                            armée est irréversible."</h3>
-                        <p class="text-white/70 mb-6 line-clamp-6">
-                            Discours de clôture de l'année académique à l'École de Commandement et d'État-Major.
-                            Dossier associé : synthèse, transcription intégrale, extraits vidéo et galerie photos.
-                        </p>
+                @if($groupedActualites['discours']->count() > 0)
+                    @php $featuredDiscours = $groupedActualites['discours']->shift(); @endphp
+                    <div class="bg-ink text-white p-8 md:p-10 relative overflow-hidden shadow-soft">
+                        <div class="absolute top-0 right-0 p-10 opacity-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                class="w-40 h-40">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                        <div class="relative z-10">
+                            <span
+                                class="inline-block border border-white/30 px-3 py-1 text-xs font-bold uppercase tracking-widest mb-4">Allocution
+                                • Mise en avant</span>
+                            <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">
+                                {{ $featuredDiscours->title }}
+                            </h3>
+                            <p class="text-white/70 mb-6 line-clamp-6">
+                                {{ Str::limit(strip_tags($featuredDiscours->content), 300) }}
+                            </p>
 
-                        <div class="grid sm:grid-cols-3 gap-4 mb-6">
-                            <div class="border-l-4 border-rdcGold pl-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Contexte</p>
-                                <p class="text-sm text-white/80 mt-1">École d’État-Major</p>
+                            <div class="grid sm:grid-cols-3 gap-4 mb-6">
+                                <div class="border-l-4 border-rdcGold pl-4">
+                                    <p class="text-xs font-bold uppercase tracking-widest text-white/70">Contexte</p>
+                                    <p class="text-sm text-white/80 mt-1">{{ $featuredDiscours->categorie->name ?? 'N/A' }}</p>
+                                </div>
+                                <div class="border-l-4 border-white/20 pl-4">
+                                    <p class="text-xs font-bold uppercase tracking-widest text-white/70">Formats</p>
+                                    <p class="text-sm text-white/80 mt-1">Texte • Vidéo • Photos</p>
+                                </div>
+                                <div class="border-l-4 border-white/20 pl-4">
+                                    <p class="text-xs font-bold uppercase tracking-widest text-white/70">Date</p>
+                                    <p class="text-sm text-white/80 mt-1">{{ $featuredDiscours->published_at->format('d M Y') }}</p>
+                                </div>
                             </div>
-                            <div class="border-l-4 border-white/20 pl-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Formats</p>
-                                <p class="text-sm text-white/80 mt-1">Texte • Vidéo • Photos</p>
-                            </div>
-                            <div class="border-l-4 border-white/20 pl-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-white/70">Date</p>
-                                <p class="text-sm text-white/80 mt-1">Déc 2025</p>
+
+                            <div class="flex flex-wrap items-center gap-4">
+                                <a href="{{ route('actualites.show', $featuredDiscours) }}"
+                                    class="bg-white text-ink px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-cream transition">Lire
+                                    le texte</a>
+                                <button class="flex items-center gap-2 text-sm font-semibold hover:text-rdcGold transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                                    </svg>
+                                    Voir la vidéo
+                                </button>
+                                <a href="{{ route('actualites.show', $featuredDiscours) }}" class="text-sm font-bold underline decoration-2 underline-offset-4 text-rdcGold">
+                                    Voir dossier média →
+                                </a>
                             </div>
                         </div>
-
-                        <div class="flex flex-wrap items-center gap-4">
-                            <button
-                                class="bg-white text-ink px-5 py-2 text-sm font-bold uppercase tracking-wide hover:bg-cream transition">Lire
-                                le texte</button>
-                            <button class="flex items-center gap-2 text-sm font-semibold hover:text-rdcGold transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
-                                </svg>
-                                Voir la vidéo
-                            </button>
-                            <a href="#" class="text-sm font-bold underline decoration-2 underline-offset-4 text-rdcGold">
-                                Voir dossier média →
-                            </a>
-                        </div>
                     </div>
-                </div>
+                @endif
 
                 <!-- Liste autres discours (améliorée) -->
                 <div class="flex flex-col gap-4">
+                    @forelse($groupedActualites['discours'] as $actualite)
                     <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
                         <div class="flex items-center justify-between">
-                            <p class="text-xs text-black/50 font-mono">Conférence de Presse • 15 Nov 2025</p>
-                            <span class="text-[10px] font-bold uppercase tracking-widest bg-indigo-50 text-indigo-900 px-2 py-1">Transcription</span>
+                            <p class="text-xs text-black/50 font-mono">{{ $actualite->categorie->name ?? 'N/A' }} • {{ $actualite->published_at->format('d M Y') }}</p>
+                            <span class="text-[10px] font-bold uppercase tracking-widest bg-indigo-50 text-indigo-900 px-2 py-1">{{ $actualite->type ?? 'Transcription' }}</span>
                         </div>
-                        <h4 class="font-extrabold text-lg text-ink mt-2">Point de presse sur la situation sécuritaire à l'Est</h4>
+                        <h4 class="font-extrabold text-lg text-ink mt-2">{{ $actualite->title }}</h4>
                         <p class="text-sm text-black/70 mt-2 line-clamp-2">
-                            Synthèse, questions-réponses, mesures annoncées et points d’attention.
+                            {{ Str::limit(strip_tags($actualite->content), 100) }}
                         </p>
-                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
+                        <a href="{{ route('actualites.show', $actualite) }}" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
                     </div>
-
-                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs text-black/50 font-mono">Interview • 10 Nov 2025</p>
-                            <span class="text-[10px] font-bold uppercase tracking-widest bg-blue-50 text-rdcBlue px-2 py-1">Replay</span>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-ink mt-2">Entretien exclusif sur la RTNC : bilan à mi-parcours</h4>
-                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
-                            Modernisation, discipline et priorités : annonces structurantes.
-                        </p>
-                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Revoir →</a>
-                    </div>
-
-                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs text-black/50 font-mono">Hommage • 02 Nov 2025</p>
-                            <span class="text-[10px] font-bold uppercase tracking-widest bg-rdcGold/20 text-ink px-2 py-1">Texte</span>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-ink mt-2">Oraison funèbre du Général Major M.K.</h4>
-                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
-                            Discours officiel, biographie, décorations et galerie cérémonielle.
-                        </p>
-                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
-                    </div>
-
-                    <div class="bg-white border border-black/10 shadow-soft p-5 hover:shadow-lg transition cursor-pointer">
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs text-black/50 font-mono">Allocution • 20 Oct 2025</p>
-                            <span class="text-[10px] font-bold uppercase tracking-widest bg-ink/5 text-ink px-2 py-1">Extraits</span>
-                        </div>
-                        <h4 class="font-extrabold text-lg text-ink mt-2">Message à la Nation : discipline & cohésion</h4>
-                        <p class="text-sm text-black/70 mt-2 line-clamp-2">
-                            Extraits officiels, points clés et éléments de langage.
-                        </p>
-                        <a href="#" class="text-sm text-rdcBlue font-bold mt-3 inline-block underline decoration-2 underline-offset-4">Lire →</a>
-                    </div>
+                    @empty
+                    <p class="col-span-full text-center text-black/60">Aucun discours n'est disponible.</p>
+                    @endforelse
                 </div>
 
             </div>
         </section>
 
         <!-- SECTION 4 : ANNONCES -->
-        <section id="section-annonces" class="content-section bg-cream2 border-y border-black/10">
+        <section id="section-annonces" class="content-section bg-cream2 border-y border-black/10 hidden">
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12">
 
                 <!-- Header amélioré -->
@@ -676,13 +538,13 @@
                         <div class="mt-auto grid sm:grid-cols-3 gap-4">
                             <div class="bg-white border border-black/10 shadow-soft p-4">
                                 <p class="text-xs font-bold uppercase tracking-widest text-black/50">Annonces actives</p>
-                                <p class="text-3xl font-extrabold mt-2">5</p>
+                                <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['annonces']->count() }}</p>
                                 <p class="text-xs text-black/50 mt-1">À déposer / postuler</p>
                             </div>
                             <div class="bg-white border border-black/10 shadow-soft p-4">
-                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Arrêtés</p>
-                                <p class="text-3xl font-extrabold mt-2">12</p>
-                                <p class="text-xs text-black/50 mt-1">2025</p>
+                                <p class="text-xs font-bold uppercase tracking-widest text-black/50">Publications</p>
+                                <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['annonces']->count() }}</p>
+                                <p class="text-xs text-black/50 mt-1">Toutes les publications</p>
                             </div>
                             <div class="bg-white border border-black/10 shadow-soft p-4">
                                 <p class="text-xs font-bold uppercase tracking-widest text-black/50">Téléchargements</p>
@@ -711,7 +573,7 @@
                 </div>
 
                 <div class="flex flex-col gap-4">
-
+                    @forelse($groupedActualites['annonces'] as $actualite)
                     <div
                         class="bg-white border border-black/10 p-5 md:p-6 shadow-soft hover:shadow-lg transition-all flex flex-col md:flex-row gap-5 items-start md:items-center">
                         <div
@@ -725,123 +587,33 @@
                         <div class="flex-1">
                             <div class="flex flex-wrap items-center gap-2 mb-1">
                                 <span
-                                    class="inline-block bg-rdcRed/10 text-rdcRed text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Important</span>
-                                <span class="text-xs text-black/50 font-mono">Réf: MINDEF/CAB/0042/25</span>
+                                    class="inline-block bg-rdcRed/10 text-rdcRed text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">{{ $actualite->categorie->name ?? 'N/A' }}</span>
+                                <span class="text-xs text-black/50 font-mono">{{ $actualite->reference ?? '' }}</span>
                             </div>
-                            <h3 class="font-extrabold text-lg leading-tight">Arrêté ministériel portant nomination des
-                                Directeurs Régionaux</h3>
+                            <h3 class="font-extrabold text-lg leading-tight">{{ $actualite->title }}</h3>
                             <p class="text-sm text-black/70 mt-1 line-clamp-3">
-                                Publication de la liste officielle des nouveaux directeurs pour les régions militaires
-                                Est et Centre. Prise de fonction immédiate.
+                                {{ Str::limit(strip_tags($actualite->content), 150) }}
                             </p>
                             <div class="mt-3 flex flex-wrap gap-2">
                                 <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">PDF</span>
-                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">Annexe</span>
+                                {{-- Add more tags if actualite has a tags or types field --}}
                             </div>
-                            <p class="text-xs text-black/50 mt-2">Publié le 24 Nov 2025</p>
+                            <p class="text-xs text-black/50 mt-2">Publié le {{ $actualite->published_at->format('d M Y') }}</p>
                         </div>
-                        <a href="#"
+                        <a href="{{ route('actualites.show', $actualite) }}"
                             class="mt-2 md:mt-0 px-4 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition whitespace-nowrap">
                             Télécharger PDF
                         </a>
                     </div>
-
-                    <div
-                        class="bg-white border border-black/10 p-5 md:p-6 shadow-soft hover:shadow-lg transition-all flex flex-col md:flex-row gap-5 items-start md:items-center">
-                        <div
-                            class="flex-shrink-0 bg-rdcGold/20 text-ink w-12 h-12 flex items-center justify-center rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-2 mb-1">
-                                <span
-                                    class="inline-block bg-black/5 text-black/70 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Recrutement</span>
-                                <span class="text-xs text-black/50 font-mono">Réf: REC/SERV/2026-A</span>
-                            </div>
-                            <h3 class="font-extrabold text-lg leading-tight">Ouverture du concours d'entrée 2026 - École du
-                                Génie</h3>
-                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
-                                Avis de recrutement pour les ingénieurs et techniciens. Les dossiers sont à déposer
-                                avant le 15 Janvier 2026.
-                            </p>
-                            <div class="mt-3 flex flex-wrap gap-2">
-                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">Conditions</span>
-                                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-cream2 border border-black/10">Formulaire</span>
-                            </div>
-                            <p class="text-xs text-black/50 mt-2">Publié le 10 Nov 2025</p>
-                        </div>
-                        <a href="#"
-                            class="mt-2 md:mt-0 px-4 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition whitespace-nowrap">
-                            Voir les conditions
-                        </a>
-                    </div>
-
-                    <!-- 3e élément pour “au moins 4” -->
-                    <div
-                        class="bg-white border border-black/10 p-5 md:p-6 shadow-soft hover:shadow-lg transition-all flex flex-col md:flex-row gap-5 items-start md:items-center">
-                        <div class="flex-shrink-0 bg-ink/5 text-ink w-12 h-12 flex items-center justify-center rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 6v6h4m6 0a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-2 mb-1">
-                                <span
-                                    class="inline-block bg-ink/10 text-ink text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Avis</span>
-                                <span class="text-xs text-black/50 font-mono">Réf: AVIS/PROC/2025-11</span>
-                            </div>
-                            <h3 class="font-extrabold text-lg leading-tight">Avis : calendrier de dépôt des dossiers administratifs</h3>
-                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
-                                Mise à jour des délais, guichets et procédures pour éviter les retards et améliorer la traçabilité.
-                            </p>
-                            <p class="text-xs text-black/50 mt-2">Publié le 05 Nov 2025</p>
-                        </div>
-                        <a href="#"
-                            class="mt-2 md:mt-0 px-4 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition whitespace-nowrap">
-                            Consulter
-                        </a>
-                    </div>
-
-                    <!-- 4e élément -->
-                    <div
-                        class="bg-white border border-black/10 p-5 md:p-6 shadow-soft hover:shadow-lg transition-all flex flex-col md:flex-row gap-5 items-start md:items-center">
-                        <div class="flex-shrink-0 bg-rdcRed/10 text-rdcRed w-12 h-12 flex items-center justify-center rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 6h.008v.008H12v-.008Z" />
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-2 mb-1">
-                                <span
-                                    class="inline-block bg-rdcRed/10 text-rdcRed text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Important</span>
-                                <span class="text-xs text-black/50 font-mono">Réf: URG/INFO/2025-10</span>
-                            </div>
-                            <h3 class="font-extrabold text-lg leading-tight">Note importante : consignes de communication officielle</h3>
-                            <p class="text-sm text-black/70 mt-1 line-clamp-3">
-                                Rappel des canaux, validation des communiqués et règles de diffusion des informations sensibles.
-                            </p>
-                            <p class="text-xs text-black/50 mt-2">Publié le 28 Oct 2025</p>
-                        </div>
-                        <a href="#"
-                            class="mt-2 md:mt-0 px-4 py-2 border border-black/10 text-sm font-semibold hover:bg-black/5 transition whitespace-nowrap">
-                            Lire
-                        </a>
-                    </div>
-
+                    @empty
+                    <p class="col-span-full text-center text-black/60">Aucune annonce n'est disponible.</p>
+                    @endforelse
                 </div>
             </div>
         </section>
 
         <!-- SECTION 5 : DECISIONS -->
-        <section id="section-decisions" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12">
+        <section id="section-decisions" class="content-section max-w-7xl mx-auto px-4 lg:px-6 py-12 hidden">
             <div class="grid lg:grid-cols-12 gap-8  items-start mb-10">
                 <div class="lg:col-span-8 flex flex-col h-full">
                     <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide flex items-center gap-3">
@@ -856,13 +628,13 @@
                     <div class="mt-auto grid sm:grid-cols-3 gap-4">
                         <div class="bg-white border border-black/10 shadow-soft p-4">
                             <p class="text-xs font-bold uppercase tracking-widest text-black/50">Décisions</p>
-                            <p class="text-3xl font-extrabold mt-2">41</p>
+                            <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['decisions']->count() }}</p>
                             <p class="text-xs text-black/50 mt-1">2025</p>
                         </div>
                         <div class="bg-white border border-black/10 shadow-soft p-4">
-                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Notes</p>
-                            <p class="text-3xl font-extrabold mt-2">73</p>
-                            <p class="text-xs text-black/50 mt-1">Circulaires & service</p>
+                            <p class="text-xs font-bold uppercase tracking-widest text-black/50">Publications</p>
+                            <p class="text-3xl font-extrabold mt-2">{{ $groupedActualites['decisions']->count() }}</p>
+                            <p class="text-xs text-black/50 mt-1">Toutes les publications</p>
                         </div>
                         <div class="bg-white border border-black/10 shadow-soft p-4">
                             <p class="text-xs font-bold uppercase tracking-widest text-black/50">Tél. (mois)</p>
@@ -888,11 +660,11 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
+                @forelse($groupedActualites['decisions'] as $actualite)
                 <div class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
                     <div class="flex items-start justify-between mb-4">
                         <div class="inline-flex items-center px-2 py-1 bg-ink text-white text-[10px] font-bold uppercase tracking-widest">
-                            Décision
+                            {{ $actualite->categorie->name ?? 'Décision' }}
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor"
@@ -902,77 +674,24 @@
                         </svg>
                     </div>
                     <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
-                        Décision N°005/MDDN/2025
+                        {{ $actualite->title }}
                     </h3>
                     <p class="text-sm text-black/70 line-clamp-3">
-                        Création d'une commission ad hoc pour l'évaluation des infrastructures hospitalières militaires en zone Est.
+                        {{ Str::limit(strip_tags($actualite->content), 150) }}
                     </p>
                     <div class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
-                        <span class="font-mono">26 Nov 2025</span>
-                        <span class="uppercase tracking-wide font-semibold text-black/70">PDF • 1.2 MB</span>
+                        <span class="font-mono">{{ $actualite->published_at->format('d M Y') }}</span>
+                        <span class="uppercase tracking-wide font-semibold text-black/70">PDF • {{ $actualite->file_size ?? 'N/A' }}</span>
                     </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
+                    <a href="{{ route('actualites.show', $actualite) }}" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
                 </div>
-
-                <div class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="inline-flex items-center px-2 py-1 bg-black/5 text-black/80 text-[10px] font-bold uppercase tracking-widest">
-                            Note circulaire
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5 text-black/30 group-hover:text-rdcBlue transition-colors">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                        </svg>
-                    </div>
-                    <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
-                        Note de service - Logistique
-                    </h3>
-                    <p class="text-sm text-black/70 line-clamp-3">
-                        Procédure actualisée concernant l'approvisionnement en carburant des unités déployées. Application immédiate.
-                    </p>
-                    <div class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
-                        <span class="font-mono">22 Nov 2025</span>
-                        <span class="uppercase tracking-wide font-semibold text-black/70">PDF • 850 KB</span>
-                    </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
-                </div>
-
-                <!-- 3e -->
-                <div class="bg-white group block border border-black/10 p-6 hover:shadow-soft transition-all duration-300 relative">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="inline-flex items-center px-2 py-1 bg-ink/10 text-ink text-[10px] font-bold uppercase tracking-widest">
-                            Note interne
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5 text-black/30 group-hover:text-rdcBlue transition-colors">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                        </svg>
-                    </div>
-                    <h3 class="font-extrabold text-lg mb-2 group-hover:text-rdcBlue transition-colors">
-                        Note interne – Conformité & diffusion
-                    </h3>
-                    <p class="text-sm text-black/70 line-clamp-3">
-                        Règles de validation des documents, archivage, et diffusion des informations sensibles.
-                    </p>
-                    <div class="mt-4 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-black/50">
-                        <span class="font-mono">14 Nov 2025</span>
-                        <span class="uppercase tracking-wide font-semibold text-black/70">PDF • 420 KB</span>
-                    </div>
-                    <a href="#" class="absolute inset-0 z-10" aria-label="Télécharger"></a>
-                </div>
-
+                @empty
+                <p class="col-span-full text-center text-black/60">Aucune décision n'est disponible.</p>
+                @endforelse
             </div>
         </section>
 
     </main>
-
-@include('partials.footer')
-
-
 </body>
 
 </html>

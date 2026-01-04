@@ -54,7 +54,6 @@ class ActualiteSeeder extends Seeder
                 'title' => $item['title'],
                 'content' => $item['content'] ?? '<p>' . implode('</p><p>', $faker->paragraphs(3)) . '</p>',
                 'categorie_id' => $categorie ? $categorie->id : null,
-                'category' => $categorie ? $categorie->name : null,
                 'image' => $item['image'] ?? null,
                 'published_at' => $item['published_at'] ?? null,
                 'status' => $item['status'] ?? 'draft',
