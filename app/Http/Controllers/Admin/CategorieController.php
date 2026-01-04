@@ -18,31 +18,39 @@ class CategorieController extends Controller
 
     public function index()
     {
-        $categories = $this->categorieService->getCategories();
+        $categories = $this->categorieService->getAllCategories();
         return view('admin.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.categories.create');
+        $parents = $this->categorieService->getAllCategories();
+        return view('admin.categories.create', compact('parents'));
     }
 
     public function store(Request $request)
     {
-        $request->validate(['name' => 'required|string|max:255']);
-        $this->categorieService->createCategorie($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:categories,id',
+        ]);
+        $this->categorieService->createCategorie($request->only(['name', 'parent_id']));
         return redirect()->route('admin.categories.index')->with('success', 'Catégorie créée avec succès.');
     }
 
     public function edit(Categorie $category)
     {
-        return view('admin.categories.edit', ['categorie' => $category]);
+        $parents = $this->categorieService->getAllCategories()->where('id', '!=', $category->id);
+        return view('admin.categories.edit', ['categorie' => $category, 'parents' => $parents]);
     }
 
     public function update(Request $request, Categorie $category)
     {
-        $request->validate(['name' => 'required|string|max:255']);
-        $this->categorieService->updateCategorie($category, $request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:categories,id',
+        ]);
+        $this->categorieService->updateCategorie($category, $request->only(['name', 'parent_id']));
         return redirect()->route('admin.categories.index')->with('success', 'Catégorie mise à jour avec succès.');
     }
 

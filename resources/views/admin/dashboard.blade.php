@@ -97,120 +97,44 @@
 
                 <tbody class="divide-y divide-gray-100">
 
-                    <!-- Ligne 1 -->
+                    @foreach($actualites as $actualite)
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4 font-medium text-ink">
-                            Inspection de la 32ème Région Militaire
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700">
-                                Opération
-                            </span>
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                                <span>Publié</span>
-                            </div>
-                        </td>
-
-                        <td class="px-6 py-4 text-black/50">02 Déc</td>
-
-                        <td class="px-6 py-4 text-right">
-                            <button class="text-black/40 hover:text-rdcBlue p-1">
-                                ✏️
-                            </button>
-                            <button class="text-black/40 hover:text-rdcRed p-1">
-                                🗑️
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Ligne 2 -->
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-6 py-4 font-medium text-ink">
-                            Réhabilitation Route K-KM
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-rdcBlue">
-                                Génie
-                            </span>
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                                <span>Publié</span>
-                            </div>
-                        </td>
-
-                        <td class="px-6 py-4 text-black/50">28 Nov</td>
-
-                        <td class="px-6 py-4 text-right">
-                            <button class="text-black/40 hover:text-rdcBlue p-1">✏️</button>
-                            <button class="text-black/40 hover:text-rdcRed p-1">🗑️</button>
-                        </td>
-                    </tr>
-
-                    <!-- Ligne 3 -->
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-6 py-4 font-medium text-ink">
-                            Discours Clôture Académique
+                            <a href="{{ route('admin.actualites.show', $actualite) }}" class="hover:text-rdcBlue">{{ $actualite->title }}</a>
                         </td>
 
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-black/60">
-                                Discours
+                                {{ $actualite->categorie->name ?? 'N/A' }}
                             </span>
                         </td>
 
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-gray-300"></span>
-                                <span>Brouillon</span>
+                                <span class="w-2 h-2 rounded-full {{ $actualite->status == 'published' ? 'bg-green-500' : ($actualite->status == 'draft' ? 'bg-gray-300' : 'bg-rdcGold') }}"></span>
+                                <span>{{ ucfirst($actualite->status) }}</span>
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 text-black/50">--</td>
+                        <td class="px-6 py-4 text-black/50">{{ $actualite->published_at ? $actualite->published_at->format('d M Y') : '--' }}</td>
 
                         <td class="px-6 py-4 text-right">
-                            <button class="text-black/40 hover:text-rdcBlue p-1">✏️</button>
-                            <button class="text-black/40 hover:text-rdcRed p-1">🗑️</button>
+                             <a href="{{ route('admin.actualites.edit', $actualite) }}" class="text-black/40 hover:text-rdcBlue p-1">✏️</a>
+                             <form action="{{ route('admin.actualites.destroy', $actualite) }}" method="POST" class="inline">
+                                 @csrf
+                                 @method('DELETE')
+                                 <button type="submit" class="text-black/40 hover:text-rdcRed p-1">🗑️</button>
+                             </form>
                         </td>
                     </tr>
-
-                    <!-- Ligne 4 -->
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-6 py-4 font-medium text-ink">
-                            Décision N°005/MDDN
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-black/10 text-ink">
-                                Document
-                            </span>
-                        </td>
-
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-rdcGold"></span>
-                                <span>En Attente</span>
-                            </div>
-                        </td>
-
-                        <td class="px-6 py-4 text-black/50">26 Nov</td>
-
-                        <td class="px-6 py-4 text-right">
-                            <button class="text-black/40 hover:text-rdcBlue p-1">✏️</button>
-                            <button class="text-black/40 hover:text-rdcRed p-1">🗑️</button>
-                        </td>
-                    </tr>
+                    @endforeach
 
                 </tbody>
             </table>
+        </div>
+
+        <div class="p-4">
+            {{ $actualites->links() }}
         </div>
 
     </div>
@@ -223,9 +147,13 @@
             <h3 class="font-bold text-lg mb-4">Actions Rapides</h3>
             <div class="flex flex-col gap-3">
 
-                <button class="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-3 rounded-md text-sm font-medium">
+                <a href="/admin/actualites/create" class="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-3 rounded-md text-sm font-medium">
                     ➕ Nouvel Article / Actualité
-                </button>
+                </a>
+
+                <a href="{{ route('admin.categories.index') }}" class="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-3 rounded-md text-sm font-medium">
+                    🗂️ Gérer les catégories
+                </a>
 
                 <button class="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-3 rounded-md text-sm font-medium">
                     📄 Uploader Document (PDF)
@@ -234,8 +162,29 @@
             </div>
         </div>
 
-        <!-- System Status -->
+        <!-- Categories list -->
         <div class="bg-white rounded-lg shadow-sm border border-black/5 p-6">
+            <h3 class="font-bold text-base mb-4 text-black/80">Catégories</h3>
+            <div class="space-y-2">
+                @foreach($categories as $cat)
+                    <div class="flex items-center justify-between text-sm">
+                        <div>
+                            <span class="font-medium">{{ $cat->name }}</span>
+                            @if($cat->parent_id)
+                                <span class="text-xs text-black/40"> — enfant de {{ $cat->parent->name ?? 'N/A' }}</span>
+                            @endif
+                        </div>
+                        <div class="text-black/60">{{ $cat->actualites_count }} articles</div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="mt-4">
+                <a href="{{ route('admin.categories.index') }}" class="text-sm text-rdcBlue">Voir toutes les catégories</a>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        {{--  <div class="bg-white rounded-lg shadow-sm border border-black/5 p-6">
             <h3 class="font-bold text-base mb-4 text-black/80">État du Système</h3>
 
             <div class="space-y-4">
@@ -262,7 +211,7 @@
 
             </div>
 
-        </div>
+        </div>  --}}
 
     </div>
 

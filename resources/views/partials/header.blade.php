@@ -84,12 +84,10 @@
                                     <div class="transform transition-all duration-500 ease-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-150">
                                         <p class="text-xs uppercase font-bold text-black/60">Discours</p>
                                         <a href="/actualites?tab=discours" class="block mt-2 text-sm hover:underline">Allocutions</a>
-                                        <a href="/actualites?tab=discours" class="block mt-1 text-sm hover:underline">Conférences</a>
                                     </div>
                                     <div class="transform transition-all duration-500 ease-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-200">
                                         <p class="text-xs uppercase font-bold text-black/60">Opérations</p>
                                         <a href="/actualites?tab=operations" class="block mt-2 text-sm hover:underline">Actions sur le terrain</a>
-                                        <a href="/actualites?tab=operations" class="block mt-1 text-sm hover:underline">Sécurité intérieure</a>
                                     </div>
                                     <div class="bg-cream2 p-4 border border-black/10 transform transition-all duration-500 ease-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:delay-300">
                                         <p class="text-xs uppercase font-bold text-black/70">Dernière publication</p>
