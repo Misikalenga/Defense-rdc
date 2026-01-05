@@ -131,33 +131,25 @@
                 </div>
             </div>
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12 fade-in">
-                @foreach($groupedProjets['modernisation'] as $subCategory => $projets)
-                <div class="mb-12">
-                    <h3 class="text-xl font-extrabold uppercase tracking-wide flex items-center gap-3 mb-6">
-                        <span class="w-2 h-7 bg-indigo-900 block"></span>
-                        {{ $subCategory }}
-                    </h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($projets as $projet)
-                        <article class="project-card bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden" data-title="{{ $projet->title }}" data-date="{{ $projet->published_at->format('Y-m-d') }}" data-score="{{ $projet->views }}">
-                            <div class="relative h-44 overflow-hidden">
-                                <img class="w-full h-full object-cover hover:scale-105 transition duration-500" src="{{ $projet->image ? asset($projet->image) : 'https://via.placeholder.com/400x300' }}" alt="{{ $projet->title }}">
-                                @if($projet->categorie)
-                                <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                    {{ $projet->categorie->name }}
-                                </div>
-                                @endif
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($groupedProjets['modernisation']->flatten()->sortByDesc('published_at') as $projet)
+                    <article class="project-card bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden" data-title="{{ $projet->title }}" data-date="{{ $projet->published_at->format('Y-m-d') }}" data-score="{{ $projet->views }}">
+                        <div class="relative h-44 overflow-hidden">
+                            <img class="w-full h-full object-cover hover:scale-105 transition duration-500" src="{{ $projet->image ? asset($projet->image) : 'https://via.placeholder.com/400x300' }}" alt="{{ $projet->title }}">
+                            @if($projet->categorie)
+                            <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                {{ $projet->categorie->name }}
                             </div>
-                            <div class="p-6">
-                                <p class="text-xs font-mono text-black/50 mb-2">{{ $projet->published_at->format('d M Y') }}</p>
-                                <h4 class="font-extrabold text-lg leading-tight mb-2">{{ $projet->title }}</h4>
-                                <div class="text-sm text-black/70 line-clamp-3">{!! Str::limit(strip_tags($projet->content), 150) !!}</div>
-                            </div>
-                        </article>
-                        @endforeach
-                    </div>
+                            @endif
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">{{ $projet->published_at->format('d M Y') }}</p>
+                            <h4 class="font-extrabold text-lg leading-tight mb-2">{{ $projet->title }}</h4>
+                            <div class="text-sm text-black/70 line-clamp-3">{!! Str::limit(strip_tags($projet->content), 150) !!}</div>
+                        </div>
+                    </article>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </section>
         @endif
@@ -174,33 +166,25 @@
                 </div>
             </div>
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12 fade-in">
-                @foreach($groupedProjets['veterans'] as $subCategory => $projets)
-                <div class="mb-12">
-                    <h3 class="text-xl font-extrabold uppercase tracking-wide flex items-center gap-3 mb-6">
-                        <span class="w-2 h-7 bg-rdcGold block"></span>
-                        {{ $subCategory }}
-                    </h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($projets as $projet)
-                        <article class="project-card bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden" data-title="{{ $projet->title }}" data-date="{{ $projet->published_at->format('Y-m-d') }}" data-score="{{ $projet->views }}">
-                           <div class="relative h-44 overflow-hidden">
-                                <img class="w-full h-full object-cover hover:scale-105 transition duration-500" src="{{ $projet->image ? asset($projet->image) : 'https://via.placeholder.com/400x300' }}" alt="{{ $projet->title }}">
-                                @if($projet->categorie)
-                                <div class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                    {{ $projet->categorie->name }}
-                                </div>
-                                @endif
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($groupedProjets['veterans']->flatten()->sortByDesc('published_at') as $projet)
+                    <article class="project-card bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden" data-title="{{ $projet->title }}" data-date="{{ $projet->published_at->format('Y-m-d') }}" data-score="{{ $projet->views }}">
+                        <div class="relative h-44 overflow-hidden">
+                            <img class="w-full h-full object-cover hover:scale-105 transition duration-500" src="{{ $projet->image ? asset($projet->image) : 'https://via.placeholder.com/400x300' }}" alt="{{ $projet->title }}">
+                            @if($projet->categorie)
+                            <div class="absolute top-4 left-4 bg-rdcRed text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                {{ $projet->categorie->name }}
                             </div>
-                            <div class="p-6">
-                                <p class="text-xs font-mono text-black/50 mb-2">{{ $projet->published_at->format('d M Y') }}</p>
-                                <h4 class="font-extrabold text-lg leading-tight mb-2">{{ $projet->title }}</h4>
-                                <div class="text-sm text-black/70 line-clamp-3">{!! Str::limit(strip_tags($projet->content), 150) !!}</div>
-                            </div>
-                        </article>
-                        @endforeach
-                    </div>
+                            @endif
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">{{ $projet->published_at->format('d M Y') }}</p>
+                            <h4 class="font-extrabold text-lg leading-tight mb-2">{{ $projet->title }}</h4>
+                            <div class="text-sm text-black/70 line-clamp-3">{!! Str::limit(strip_tags($projet->content), 150) !!}</div>
+                        </div>
+                    </article>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </section>
         @endif
@@ -217,33 +201,25 @@
                 </div>
             </div>
             <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12 fade-in">
-                @foreach($groupedProjets['cooperation'] as $subCategory => $projets)
-                <div class="mb-12">
-                    <h3 class="text-xl font-extrabold uppercase tracking-wide flex items-center gap-3 mb-6">
-                        <span class="w-2 h-7 bg-rdcRed block"></span>
-                        {{ $subCategory }}
-                    </h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($projets as $projet)
-                        <article class="project-card bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden" data-title="{{ $projet->title }}" data-date="{{ $projet->published_at->format('Y-m-d') }}" data-score="{{ $projet->views }}">
-                            <div class="relative h-44 overflow-hidden">
-                                <img class="w-full h-full object-cover hover:scale-105 transition duration-500" src="{{ $projet->image ? asset($projet->image) : 'https://via.placeholder.com/400x300' }}" alt="{{ $projet->title }}">
-                                @if($projet->categorie)
-                                <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
-                                    {{ $projet->categorie->name }}
-                                </div>
-                                @endif
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($groupedProjets['cooperation']->flatten()->sortByDesc('published_at') as $projet)
+                    <article class="project-card bg-white border border-black/10 shadow-soft hover:-translate-y-1 transition overflow-hidden" data-title="{{ $projet->title }}" data-date="{{ $projet->published_at->format('Y-m-d') }}" data-score="{{ $projet->views }}">
+                        <div class="relative h-44 overflow-hidden">
+                            <img class="w-full h-full object-cover hover:scale-105 transition duration-500" src="{{ $projet->image ? asset($projet->image) : 'https://via.placeholder.com/400x300' }}" alt="{{ $projet->title }}">
+                            @if($projet->categorie)
+                            <div class="absolute top-4 left-4 bg-rdcBlue text-white text-[10px] font-bold px-2 py-1 uppercase tracking-widest">
+                                {{ $projet->categorie->name }}
                             </div>
-                            <div class="p-6">
-                                <p class="text-xs font-mono text-black/50 mb-2">{{ $projet->published_at->format('d M Y') }}</p>
-                                <h4 class="font-extrabold text-lg leading-tight mb-2">{{ $projet->title }}</h4>
-                                <div class="text-sm text-black/70 line-clamp-3">{!! Str::limit(strip_tags($projet->content), 150) !!}</div>
-                            </div>
-                        </article>
-                        @endforeach
-                    </div>
+                            @endif
+                        </div>
+                        <div class="p-6">
+                            <p class="text-xs font-mono text-black/50 mb-2">{{ $projet->published_at->format('d M Y') }}</p>
+                            <h4 class="font-extrabold text-lg leading-tight mb-2">{{ $projet->title }}</h4>
+                            <div class="text-sm text-black/70 line-clamp-3">{!! Str::limit(strip_tags($projet->content), 150) !!}</div>
+                        </div>
+                    </article>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </section>
         @endif
