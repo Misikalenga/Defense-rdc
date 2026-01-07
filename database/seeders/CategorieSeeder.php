@@ -34,6 +34,41 @@ class CategorieSeeder extends Seeder
                 ['name' => 'Assistance', 'slug' => 'assistance'],
                 ['name' => 'Instruction', 'slug' => 'instruction'],
             ],
+            'projets-prioritaires' => [
+                ['name' => 'Sécurité (Projets)', 'slug' => 'securite-projets'],
+                ['name' => 'Transformation', 'slug' => 'transformation'],
+                ['name' => 'Gouvernance', 'slug' => 'gouvernance'],
+                ['name' => 'Crise', 'slug' => 'crise'],
+                ['name' => 'Logistique (Projets)', 'slug' => 'logistique-projets'],
+            ],
+            'modernisation' => [
+                ['name' => 'Équipement', 'slug' => 'equipement'],
+                ['name' => 'Maintenance', 'slug' => 'maintenance'],
+                ['name' => 'Interop', 'slug' => 'interop'],
+                ['name' => 'Infrastructures', 'slug' => 'infrastructures'],
+                ['name' => 'Leadership', 'slug' => 'leadership'],
+                ['name' => 'Cyber', 'slug' => 'cyber'],
+                ['name' => 'Terrain', 'slug' => 'terrain'],
+                ['name' => 'Formation (Modernisation)', 'slug' => 'formation-modernisation'],
+            ],
+            'veterans' => [
+                ['name' => 'Droits sociaux', 'slug' => 'droits-sociaux'],
+                ['name' => 'Reconversion', 'slug' => 'reconversion'],
+                ['name' => 'Métiers', 'slug' => 'metiers'],
+                ['name' => 'Emploi', 'slug' => 'emploi'],
+                ['name' => 'Soutien', 'slug' => 'soutien'],
+                ['name' => 'Pensions', 'slug' => 'pensions'],
+                ['name' => 'Accès', 'slug' => 'acces'],
+                ['name' => 'Médiation', 'slug' => 'mediation'],
+            ],
+            'cooperation' => [
+                ['name' => 'Stabilité régionale', 'slug' => 'stabilite-regionale'],
+                ['name' => 'Humanitaire', 'slug' => 'humanitaire'],
+                ['name' => 'Technique', 'slug' => 'technique'],
+                ['name' => 'Dialogue', 'slug' => 'dialogue'],
+                ['name' => 'Prévention', 'slug' => 'prevention'],
+                ['name' => 'Confiance', 'slug' => 'confiance'],
+            ]
         ];
 
         // Create parent categories

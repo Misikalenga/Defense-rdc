@@ -12,11 +12,13 @@ class PageController extends Controller
 {
     protected $actualiteService;
     protected $categorieService;
+    protected $projetService;
 
-    public function __construct(ActualiteService $actualiteService, CategorieService $categorieService)
+    public function __construct(ActualiteService $actualiteService, CategorieService $categorieService, \App\Services\ProjetService $projetService)
     {
         $this->actualiteService = $actualiteService;
         $this->categorieService = $categorieService;
+        $this->projetService = $projetService;
     }
 
     public function actualites()
@@ -83,5 +85,39 @@ class PageController extends Controller
     public function show(Actualite $actualite)
     {
         return view('actualite-single', compact('actualite'));
+    }
+
+    public function projets()
+    {
+        $publishedProjets = $this->projetService->getPublishedProjets();
+
+        $groupedProjets = $publishedProjets->groupBy(function ($projet) {
+            // Group by parent category slug, or use a default group
+            if ($projet->categorie && $projet->categorie->parent) {
+                // Map the parent slug to the section ID used in the view
+                switch ($projet->categorie->parent->slug) {
+                    case 'projets-prioritaires':
+                        return 'priorite';
+                    case 'modernisation':
+                        return 'modernisation';
+                    case 'veterans':
+                        return 'veterans';
+                    case 'cooperation':
+                        return 'cooperation';
+                }
+            }
+            return 'others'; // Default group if no parent or category
+        });
+
+        // Further group by child category within each main group
+        $groupedProjets = $groupedProjets->map(function ($group) {
+            return $group->groupBy(function ($projet) {
+                return $projet->categorie ? $projet->categorie->name : 'Sans catégorie';
+            });
+        });
+
+        return view('projets', [
+            'groupedProjets' => $groupedProjets,
+        ]);
     }
 }

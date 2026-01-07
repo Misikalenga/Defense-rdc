@@ -16,15 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Admin Principal',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Admin Principal',
+                'password' => Hash::make('password'),
+            ]
+        );
 
         $this->call([
             CategorieSeeder::class,
             ActualiteSeeder::class,
+            ProjetSeeder::class,
         ]);
     }
 }
