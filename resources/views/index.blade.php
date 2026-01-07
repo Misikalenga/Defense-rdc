@@ -98,10 +98,10 @@
 
     <!-- HEADER -->
     @include('partials.header')
+    <!-- SECTION Hero -->
+    <!-- <section id="accueil" class="notscroll  relative h-screen max-h-[19.4375rem] w-full overflow-hidden bg-ink md:max-h-[42rem]">
 
-    <section id="accueil" class="notscroll  relative h-screen max-h-[19.4375rem] w-full overflow-hidden bg-ink md:max-h-[42rem]">
 
-        <!-- CONTAINER VIDÉO -->
         <div class="absolute inset-0 h-full w-full">
             <iframe class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style="width: 120vw; height: 120vh;" src="https://www.youtube.com/embed/GWNu3U3HNfc?start=0&autoplay=1&mute=1&controls=0&loop=1&playlist=GWNu3U3HNfc&modestbranding=1&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Fond vidéo Défense RDC">
             </iframe>
@@ -121,8 +121,379 @@
             </div>
         </div>
 
-    </section>
+    </section>  -->
 
+<section id="accueil" class="notscroll relative h-screen max-h-[19.4375rem] w-full overflow-hidden bg-ink md:max-h-[42rem]">
+  <!-- Video BG -->
+  <div class="absolute inset-0 h-full w-full">
+    <iframe
+      class="absolute left-1/2 top-1/2 pointer-events-none -translate-x-1/2 -translate-y-1/2"
+      style="width: 120vw; height: 120vh"
+      src="https://www.youtube.com/embed/GWNu3U3HNfc?start=0&autoplay=1&mute=1&controls=0&loop=1&playlist=GWNu3U3HNfc&modestbranding=1&playsinline=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      title="Fond vidéo Défense RDC"
+    ></iframe>
+  </div>
+
+  <!-- Overlay -->
+  <div class="relative z-10 flex h-full w-full items-center justify-center bg-gradient-to-b from-rdcBlue/70 via-rdcBlue/55 to-rdcBlue/80 p-4">
+    <div class="w-full max-w-5xl text-white ">
+      <!-- Carousel -->
+      <div
+        id="heroCarousel"
+        class="relative " aria-roledescription="carousel" aria-label="Carrousel d’accueil">
+        <!-- Slides viewport -->
+        <div class="relative  rounded-2xl">
+          <!-- Slides track (we animate via JS only) -->
+          <div id="heroSlides" class="relative my-24">
+            <!-- Slide template (two slides) -->
+            <article
+              class="hero-slide absolute inset-0 flex w-full flex-col gap-4 p-4 md:flex-row md:items-center md:gap-8 md:p-8"
+              data-slide="0"
+              aria-hidden="false"
+              style="opacity: 1; transform: translateX(0px); will-change: transform, opacity;"
+            >
+              <!-- Image -->
+              <div class="w-full md:w-[42%] flex justify-center">
+                <img
+                  class="h-full  rounded-xl object-cover md:h-56"
+                  src="assets/President.jpg"
+                  alt="Forces et discipline"
+                  loading="eager"
+                  decoding="async"
+                  draggable="false"
+                />
+              </div>
+
+              <!-- Text -->
+              <div class="w-full md:w-[58%]">
+                <h2 class="text-xl font-extrabold md:text-4xl">
+                  Défense Nationale &amp; Anciens Combattants
+                </h2>
+
+                <p class="mt-3 text-sm leading-relaxed text-white/90 md:mt-4 md:text-base">
+                  Une vision structurée : modernisation, formation, discipline et protection des sites stratégiques.
+                  Priorité à l’efficacité opérationnelle et à la stabilité.
+                </p>
+
+                <a
+                  href="#"
+                  class="mt-4 inline-flex items-center gap-2 text-sm font-semibold underline decoration-white/50 underline-offset-4 hover:decoration-white md:mt-6"
+                >
+                  En savoir plus
+                  <span aria-hidden="true">→</span>
+                </a>
+
+              </div>
+            </article>
+
+            <article
+              class="hero-slide absolute inset-0 flex w-full flex-col gap-4 p-4 md:flex-row md:items-center md:gap-8 md:p-8"
+              data-slide="1"
+              aria-hidden="true"
+              style="opacity: 0; transform: translateX(40px); will-change: transform, opacity; pointer-events: none;"
+            >
+              <!-- Image -->
+              <div class="w-full md:w-[42%] flex justify-center">
+                <img
+                  class="h-full  rounded-xl object-cover md:h-56"
+                  src="assets/PremiereMinistre.jpg"
+                  alt="Protection et résilience"
+                  loading="eager"
+                  decoding="async"
+                  draggable="false"
+                />
+              </div>
+
+              <!-- Text -->
+              <div class="w-full md:w-[58%]">
+                <h2 class="text-xl font-extrabold md:text-4xl">
+                  Sécurité intérieure &amp; Résilience territoriale
+                </h2>
+
+                <p class="mt-3 text-sm leading-relaxed text-white/90 md:mt-4 md:text-base">
+                  Renforcement des capacités : surveillance, renseignement, coordination interservices et réponse rapide.
+                  Objectif : dissuasion, protection des civils et continuité de l’État.
+                </p>
+
+                <a
+                  href="#"
+                  class="mt-4 inline-flex items-center gap-2 text-sm font-semibold underline decoration-white/50 underline-offset-4 hover:decoration-white md:mt-6"
+                >
+                  Découvrir le programme
+                  <span aria-hidden="true">→</span>
+                </a>
+
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Controls / Indicators -->
+        <div class="flex items-end h-full justify-center m-24">
+            <div class="mt-4 flex items-center justify-center gap-3 md:mt-6">
+              <button
+                type="button"
+                id="heroPrev"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                aria-label="Slide précédent"
+              >
+                ‹
+              </button>
+
+              <div class="flex items-center gap-2" role="tablist" aria-label="Indicateurs du carrousel">
+                <button
+                  type="button"
+                  class="hero-dot h-2 w-2 rounded-full bg-white/70 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  data-goto="0"
+                  aria-label="Aller au slide 1"
+                  aria-current="true"
+                ></button>
+                <button
+                  type="button"
+                  class="hero-dot h-2 w-2 rounded-full bg-white/30 hover:bg-white/45 focus:outline-none focus:ring-2 focus:ring-white/40"
+                  data-goto="1"
+                  aria-label="Aller au slide 2"
+                  aria-current="false"
+                ></button>
+              </div>
+
+              <button
+                type="button"
+                id="heroNext"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/40"
+                aria-label="Slide suivant"
+              >
+                ›
+              </button>
+            </div>
+        </div>
+      </div>
+      <!-- /Carousel -->
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.getElementById("heroCarousel");
+      const slidesWrap = document.getElementById("heroSlides");
+      if (!root || !slidesWrap) return;
+
+      const slides = Array.from(slidesWrap.querySelectorAll(".hero-slide"));
+      const dots = Array.from(root.querySelectorAll(".hero-dot"));
+      const btnPrev = document.getElementById("heroPrev");
+      const btnNext = document.getElementById("heroNext");
+
+      const AUTOPLAY_MS = 10000;
+      const DURATION = 520; // ms (JS animation)
+      const SLIDE_PX = 40;  // slide distance
+      let index = 0;
+      let timer = null;
+      let isAnimating = false;
+      let isHoverPaused = false;
+
+      // ---- Preload images to avoid flash ----
+      const imgUrls = slides
+        .map(s => s.querySelector("img")?.getAttribute("src"))
+        .filter(Boolean);
+
+      function preloadImages(urls) {
+        return Promise.all(
+          urls.map(
+            (u) =>
+              new Promise((res) => {
+                const im = new Image();
+                im.onload = () => res(true);
+                im.onerror = () => res(false);
+                im.src = u;
+              })
+          )
+        );
+      }
+
+      // ---- Helpers ----
+      function clamp(n, min, max) {
+        return Math.max(min, Math.min(max, n));
+      }
+
+      function easeOutCubic(t) {
+        // t in [0..1]
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function setDotActive(i) {
+        dots.forEach((d, di) => {
+          const active = di === i;
+          d.style.backgroundColor = active ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.3)";
+          d.setAttribute("aria-current", active ? "true" : "false");
+        });
+      }
+
+      function setSlideInteractive(slide, interactive) {
+        slide.style.pointerEvents = interactive ? "" : "none";
+        slide.setAttribute("aria-hidden", interactive ? "false" : "true");
+      }
+
+      // ---- JS-only animation (fade + slide) ----
+      function animateTransition(fromIdx, toIdx, direction) {
+        if (isAnimating || fromIdx === toIdx) return;
+        isAnimating = true;
+
+        const from = slides[fromIdx];
+        const to = slides[toIdx];
+
+        // direction: +1 next, -1 prev
+        const inFromX = direction > 0 ? SLIDE_PX : -SLIDE_PX;
+        const outToX = direction > 0 ? -SLIDE_PX : SLIDE_PX;
+
+        // Prepare "to" slide
+        to.style.opacity = "0";
+        to.style.transform = `translateX(${inFromX}px)`;
+        setSlideInteractive(to, true);
+        setSlideInteractive(from, false); // prevent clicks during transition
+
+        const start = performance.now();
+
+        function frame(now) {
+          const t = clamp((now - start) / DURATION, 0, 1);
+          const e = easeOutCubic(t);
+
+          // Fade + slide
+          const fromOpacity = 1 - e;
+          const toOpacity = e;
+
+          const fromX = outToX * e;
+          const toX = inFromX * (1 - e);
+
+          from.style.opacity = String(fromOpacity);
+          from.style.transform = `translateX(${fromX}px)`;
+
+          to.style.opacity = String(toOpacity);
+          to.style.transform = `translateX(${toX}px)`;
+
+          if (t < 1) {
+            requestAnimationFrame(frame);
+          } else {
+            // Final state
+            from.style.opacity = "0";
+            from.style.transform = `translateX(${outToX}px)`;
+            setSlideInteractive(from, false);
+
+            to.style.opacity = "1";
+            to.style.transform = "translateX(0px)";
+            setSlideInteractive(to, true);
+
+            index = toIdx;
+            setDotActive(index);
+
+            isAnimating = false;
+          }
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      function goto(nextIdx) {
+        const toIdx = (nextIdx + slides.length) % slides.length;
+        const direction = toIdx > index ? 1 : -1;
+
+        // handle wrap direction nicely
+        // If going 0 -> last via prev, direction should be -1
+        // If going last -> 0 via next, direction should be +1
+        let dir = direction;
+        if (index === 0 && toIdx === slides.length - 1) dir = -1;
+        if (index === slides.length - 1 && toIdx === 0) dir = +1;
+
+        animateTransition(index, toIdx, dir);
+      }
+
+      function next() {
+        goto(index + 1);
+      }
+      function prev() {
+        goto(index - 1);
+      }
+
+      function stopAutoplay() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        timer = setInterval(() => {
+          if (isAnimating) return;
+          if (isHoverPaused) return;
+          next();
+        }, AUTOPLAY_MS);
+      }
+
+      // ---- Events ----
+      btnNext && btnNext.addEventListener("click", () => {
+        if (isAnimating) return;
+        next();
+        startAutoplay();
+      });
+
+      btnPrev && btnPrev.addEventListener("click", () => {
+        if (isAnimating) return;
+        prev();
+        startAutoplay();
+      });
+
+      dots.forEach((d) => {
+        d.addEventListener("click", () => {
+          const g = parseInt(d.getAttribute("data-goto"), 10);
+          if (Number.isNaN(g) || g === index || isAnimating) return;
+          goto(g);
+          startAutoplay();
+        });
+      });
+
+      // Pause on hover (desktop-like pointer)
+      function isDesktopPointer() {
+        return window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      }
+
+      root.addEventListener("mouseenter", () => {
+        if (!isDesktopPointer()) return;
+        isHoverPaused = true;
+      });
+      root.addEventListener("mouseleave", () => {
+        if (!isDesktopPointer()) return;
+        isHoverPaused = false;
+      });
+
+      // Init visibility
+      slides.forEach((s, i) => {
+        if (i === 0) {
+          s.style.opacity = "1";
+          s.style.transform = "translateX(0px)";
+          setSlideInteractive(s, true);
+        } else {
+          s.style.opacity = "0";
+          s.style.transform = `translateX(${SLIDE_PX}px)`;
+          setSlideInteractive(s, false);
+        }
+      });
+      setDotActive(0);
+
+      // Preload then start autoplay (still ok if preload fails)
+      preloadImages(imgUrls).finally(() => startAutoplay());
+
+      // Reduce overload on small screens: keep layout stacked (already via md:flex-row).
+      // Nothing else needed because Tailwind classes handle responsive layout.
+    })();
+  </script>
+</section>
+
+    
+    <!-- SECTION Hero END -->
+     
 <!-- BIOGRAPHIE -->
 
     <section id="biographie" class="notscroll">
