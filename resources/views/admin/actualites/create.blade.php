@@ -11,10 +11,7 @@
             <input type="text" name="title" id="title" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" required>
         </div>
 
-        <div>
-            <label for="content" class="text-sm font-medium text-black/70">Contenu</label>
-            <textarea name="content" id="content" rows="5" class="mt-1 block w-full px-3 py-2 border border-black/10 rounded-md shadow-sm focus:outline-none focus:ring-rdcBlue focus:border-rdcBlue sm:text-sm" required></textarea>
-        </div>
+        <x-ckeditor-editor id="content" name="content" label="Contenu" :value="old('content')" />
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -54,3 +51,4 @@
     </form>
 </div>
 @endsection
+

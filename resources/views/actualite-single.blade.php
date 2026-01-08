@@ -26,6 +26,7 @@
             }
         }
     </script>
+    @vite('resources/css/typography_override.css')
 </head>
 
 <body class="bg-cream text-ink antialiased">
