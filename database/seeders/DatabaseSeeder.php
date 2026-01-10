@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             ActualiteSeeder::class,
             ProjetSeeder::class,
             CabinetMemberSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

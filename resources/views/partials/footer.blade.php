@@ -1,3 +1,4 @@
+resources/views/partials/footer.blade.php
 <footer class="bg-white border-t border-black/10">
     <div class="max-w-7xl mx-auto px-6 lg:px-12 py-14 grid gap-10 lg:grid-cols-4 text-sm">
 
@@ -44,9 +45,9 @@
                         Contact
                     </p>
                     <ul class="space-y-2 text-[0.9rem] text-black/70 leading-relaxed">
-                        <li>📍 Kinshasa, RDC</li>
-                        <li>☎️ +243 000 000 000</li>
-                        <li>✉️ contact@defense.gouv.cd</li>
+                        <li>📍 {!! nl2br(e(setting('contact_address'))) !!}</li>
+                        <li>☎️ {{ setting('contact_phone') }}</li>
+                        <li>✉️ <a href="mailto:{{ setting('contact_email') }}" class="hover:text-rdcBlue">{{ setting('contact_email') }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,9 +76,9 @@
                 <div>
                     <p class="text-xl font-bold uppercase tracking-wide mb-4">Contact</p>
                     <ul class="space-y-2 text-[0.9rem] text-black/70 leading-relaxed">
-                        <li>📍 Kinshasa, RDC</li>
-                        <li>☎️ +243 000 000 000</li>
-                        <li>✉️ contact@defense.gouv.cd</li>
+                        <li>📍 {!! nl2br(e(setting('contact_address'))) !!}</li>
+                        <li>☎️ {{ setting('contact_phone') }}</li>
+                        <li>✉️ <a href="mailto:{{ setting('contact_email') }}" class="hover:text-rdcBlue">{{ setting('contact_email') }}</a></li>
                     </ul>
                 </div>
 
@@ -102,38 +103,42 @@
 </footer>
 
 
-    <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-[9997] opacity-0 translate-y-3 pointer-events-none
+<button id="scrollTopBtn" class="fixed bottom-6 right-6 z-[9997] opacity-0 translate-y-3 pointer-events-none
            bg-rdcBlue text-white w-12 h-12 shadow-soft
            flex items-center justify-center text-xl transition duration-300 hover:bg-rdcBlue/90" aria-label="Retour en haut">
-        ↑
-    </button>
+    ↑
+</button>
 <script>
     // date automatique année copyright
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    
 
 
 
 
-        // Scroll Logic BTN + Progress Bar
-        const progressBar = document.getElementById("progressBar");
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-        function onScroll() {
-            const scrollY = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-            progressBar.style.width = progress + "%";
+    // Scroll Logic BTN + Progress Bar
+    const progressBar = document.getElementById("progressBar");
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-            if (scrollY > 300) {
-                scrollTopBtn.classList.remove("opacity-0", "translate-y-3", "pointer-events-none");
-                scrollTopBtn.classList.add("opacity-100", "translate-y-0");
-            } else {
-                scrollTopBtn.classList.add("opacity-0", "translate-y-3", "pointer-events-none");
-                scrollTopBtn.classList.remove("opacity-100", "translate-y-0");
-            }
+    function onScroll() {
+        const scrollY = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+        progressBar.style.width = progress + "%";
+
+        if (scrollY > 300) {
+            scrollTopBtn.classList.remove("opacity-0", "translate-y-3", "pointer-events-none");
+            scrollTopBtn.classList.add("opacity-100", "translate-y-0");
+        } else {
+            scrollTopBtn.classList.add("opacity-0", "translate-y-3", "pointer-events-none");
+            scrollTopBtn.classList.remove("opacity-100", "translate-y-0");
         }
-        window.addEventListener("scroll", onScroll);
-        scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    }
+    window.addEventListener("scroll", onScroll);
+    scrollTopBtn.addEventListener("click", () => window.scrollTo({
+        top: 0
+        , behavior: "smooth"
+    }));
+
 </script>
