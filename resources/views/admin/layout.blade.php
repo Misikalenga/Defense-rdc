@@ -39,8 +39,7 @@
     </style>
 
     @stack('styles')
-</head>
-
+      </head>
 <body class="bg-gray-50 text-ink antialiased flex h-screen overflow-hidden">
 
     {{-- SIDEBAR --}}
@@ -57,6 +56,8 @@
             @yield('content')
         </div>
     </main>
+
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 
     @stack('scripts')
 

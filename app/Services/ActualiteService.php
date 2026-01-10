@@ -20,6 +20,11 @@ class ActualiteService
     public function createActualite(array $data): Actualite
     {
         $data['slug'] = Str::slug($data['title']);
+
+        if (!empty($data['content'])) {
+            $data['content'] = clean($data['content']);
+        }
+
         return Actualite::create($data);
     }
 
@@ -28,6 +33,11 @@ class ActualiteService
         if (isset($data['title'])) {
             $data['slug'] = Str::slug($data['title']);
         }
+
+        if (!empty($data['content'])) {
+            $data['content'] = clean($data['content']);
+        }
+
         return $actualite->update($data);
     }
 

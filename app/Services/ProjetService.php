@@ -20,6 +20,11 @@ class ProjetService
     public function createProjet(array $data): Projet
     {
         $data['slug'] = Str::slug($data['title']);
+
+        if (!empty($data['content'])) {
+            $data['content'] = clean($data['content']);
+        }
+
         return Projet::create($data);
     }
 
@@ -28,6 +33,11 @@ class ProjetService
         if (isset($data['title'])) {
             $data['slug'] = Str::slug($data['title']);
         }
+
+        if (!empty($data['content'])) {
+            $data['content'] = clean($data['content']);
+        }
+        
         return $projet->update($data);
     }
 

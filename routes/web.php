@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ActualiteController;
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\ProjetController;
+use App\Http\Controllers\Admin\CabinetMemberController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\PageController;
 
 // ------------------------
@@ -30,10 +31,8 @@ Route::get('/projets', [PageController::class, 'projets'])->name('projets');
 // ------------------------
 // PAGE CABINET (publique)
 // ------------------------
-Route::get('/cabinet', function () {
-    return view('cabinet');
-})->name('cabinet');
-
+Route::get('/cabinet', [PageController::class, 'cabinet'])->name('cabinet');
+Route::get('/cabinet/{cabinetMember:slug}', [PageController::class, 'showCabinetMember'])->name('cabinet.show');
 
 // ------------------------
 // PAGE CONTACT (publique)
@@ -41,7 +40,6 @@ Route::get('/cabinet', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-
 
 // ------------------------
 // PROFIL & LOGOUT DE BREEZE
@@ -63,13 +61,14 @@ Route::middleware('auth')->group(function () {
 // ------------------------
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
     Route::resource('actualites', ActualiteController::class);
     Route::resource('projets', ProjetController::class);
     Route::resource('categories', CategorieController::class)->except(['show']);
+    Route::resource('cabinet-members', CabinetMemberController::class)->except(['show']);
 });
-
 
 // ------------------------
 // ROUTES D'AUTHENTIFICATION BREEZE
 // ------------------------
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

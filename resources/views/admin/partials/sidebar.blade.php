@@ -48,7 +48,15 @@
                 Projets
             </a>
 
-            <!-- Actualités -->
+            <!-- Membres Cabinet -->
+            <a href="{{ route('admin.cabinet-members.index') }}" class="sidebar-link {{ str_contains($current, 'admin.cabinet-members') ? 'active' : '' }} flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-r hover:bg-white/5 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 opacity-70">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.28a4.5 4.5 0 00-1.397 8.328A4.5 4.5 0 0013.5 18a4.5 4.5 0 00-1.397-3.208M12 12.75a3 3 0 100-6 3 3 0 000 6z" />
+                </svg>
+                Membres Cabinet
+            </a>
+
+            <!-- Categories -->
             <a href="/admin/categories"
                class="sidebar-link {{ str_contains($current, 'admin.categories') ? 'active' : '' }} flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-r hover:bg-white/5 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-tree mr-3" aria-hidden="true">

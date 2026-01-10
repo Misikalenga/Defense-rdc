@@ -7,18 +7,23 @@ use App\Services\CategorieService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Models\Actualite;
+use App\Models\CabinetMember;
+use App\Services\CabinetMemberService;
+
 
 class PageController extends Controller
 {
     protected $actualiteService;
     protected $categorieService;
     protected $projetService;
+    protected $cabinetMemberService;
 
-    public function __construct(ActualiteService $actualiteService, CategorieService $categorieService, \App\Services\ProjetService $projetService)
+    public function __construct(ActualiteService $actualiteService, CategorieService $categorieService, \App\Services\ProjetService $projetService, CabinetMemberService $cabinetMemberService)
     {
         $this->actualiteService = $actualiteService;
         $this->categorieService = $categorieService;
         $this->projetService = $projetService;
+        $this->cabinetMemberService = $cabinetMemberService;
     }
 
     public function actualites()
@@ -119,5 +124,31 @@ class PageController extends Controller
         return view('projets', [
             'groupedProjets' => $groupedProjets,
         ]);
+    }
+
+    public function cabinet()
+    {
+        $allMembers = $this->cabinetMemberService->getActiveMembers();
+
+        // Récupérer le ministre par sa fonction officielle (à adapter si le titre change)
+        $minister = $allMembers->firstWhere('official_function', 'Ministre de la Défense Nationale et des Anciens Combattants');
+
+        // Récupérer les autres membres actifs, excluant le ministre
+        $otherMembers = $allMembers->filter(function ($member) use ($minister) {
+            return $minister ? $member->id !== $minister->id : true;
+        })->sortBy('order_index'); // Assure l'ordre pour les autres membres
+
+        return view('cabinet', compact('minister', 'otherMembers'));
+    }
+
+    /**
+     * Display a single cabinet member's profile.
+     *
+     * @param  \App\Models\CabinetMember $cabinetMember
+     * @return \Illuminate\View\View
+     */
+    public function showCabinetMember(CabinetMember $cabinetMember)
+    {
+        return view('cabinet-member-show', ['member' => $cabinetMember]);
     }
 }
