@@ -1,0 +1,16 @@
+[33ma480593[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull origin main: Fast-forward
+[33mc7494b4[m HEAD@{1}: checkout: moving from homeModif to main
+[33mc504418[m[33m ([m[1;31morigin/homeModif[m[33m, [m[1;32mhomeModif[m[33m)[m HEAD@{2}: commit: hero nouvelle version
+[33mc7494b4[m HEAD@{3}: checkout: moving from main to homeModif
+[33mc7494b4[m HEAD@{4}: pull origin main: Fast-forward
+[33m98f1bad[m HEAD@{5}: checkout: moving from projetCrud to main
+[33m08458c6[m[33m ([m[1;31morigin/projetCrud[m[33m, [m[1;32mprojetCrud[m[33m)[m HEAD@{6}: commit: feat: Implémentation complète du CRUD pour les Projets
+[33m98f1bad[m HEAD@{7}: checkout: moving from main to projetCrud
+[33m98f1bad[m HEAD@{8}: pull origin main: Fast-forward
+[33m25da60a[m[33m ([m[1;32mnewModif[m[33m)[m HEAD@{9}: reset: moving to HEAD
+[33m25da60a[m[33m ([m[1;32mnewModif[m[33m)[m HEAD@{10}: checkout: moving from newModif to main
+[33m25da60a[m[33m ([m[1;32mnewModif[m[33m)[m HEAD@{11}: checkout: moving from main to newModif
+[33m25da60a[m[33m ([m[1;32mnewModif[m[33m)[m HEAD@{12}: pull origin main: Fast-forward
+[33ma0881af[m HEAD@{13}: checkout: moving from Laravel to main
+[33m44c8d4a[m[33m ([m[1;32mLaravel[m[33m)[m HEAD@{14}: checkout: moving from main to Laravel
+[33ma0881af[m HEAD@{15}: clone: from github.com:Misikalenga/Defense-rdc.git
