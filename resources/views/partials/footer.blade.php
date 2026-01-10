@@ -1,4 +1,3 @@
-resources/views/partials/footer.blade.php
 <footer class="bg-white border-t border-black/10">
     <div class="max-w-7xl mx-auto px-6 lg:px-12 py-14 grid gap-10 lg:grid-cols-4 text-sm">
 
@@ -76,9 +75,9 @@ resources/views/partials/footer.blade.php
                 <div>
                     <p class="text-xl font-bold uppercase tracking-wide mb-4">Contact</p>
                     <ul class="space-y-2 text-[0.9rem] text-black/70 leading-relaxed">
-                        <li>📍 {!! nl2br(e(setting('contact_address'))) !!}</li>
-                        <li>☎️ {{ setting('contact_phone') }}</li>
-                        <li>✉️ <a href="mailto:{{ setting('contact_email') }}" class="hover:text-rdcBlue">{{ setting('contact_email') }}</a></li>
+                        <li>📍 {!! nl2br(e(setting('contact.address'))) !!}</li>
+                        <li>☎️ {{ setting('contact.phone') }}</li>
+                        <li>✉️ <a href="mailto:{{ setting('contact.email') }}" class="hover:text-rdcBlue">{{ setting('contact.email') }}</a></li>
                     </ul>
                 </div>
 
